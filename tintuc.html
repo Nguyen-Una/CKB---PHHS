@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tin Tức & Sự Kiện – Trường THPT C Kim Bảng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0b1f4a;
+    --blue-mid: #16356e;
+    --blue-bright: #1a5fa8;
+    --blue-light: #dbeafe;
+    --gold: #c9a84c;
+    --gold-light: #e8d48a;
+    --gold-pale: #fdf8eb;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --shadow-sm: 0 1px 3px rgba(10,36,99,0.08);
+    --shadow-md: 0 4px 16px rgba(10,36,99,0.12);
+    --shadow-lg: 0 12px 40px rgba(10,36,99,0.18);
+    --shadow-xl: 0 24px 64px rgba(10,36,99,0.22);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,36,99,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(10,36,99,0.25);
+    transition: var(--transition);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(10,36,99,0.18);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+  .logo-sub { display: none; }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+
+  nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+  nav a.active { color: var(--gold); background: rgba(244,185,66,0.15); }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    gap: 8px;
+    transition: var(--transition);
+  }
+
+  .header-search:focus-within {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(244,185,66,0.5);
+  }
+
+  .header-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-size: 13px;
+    width: 140px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+
+  .header-search input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+  }
+
+  .search-btn:hover { color: var(--gold); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px; height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    margin-top: 72px;
+    background: linear-gradient(135deg, #0b1f4a 0%, #16356e 55%, #1a5fa8 100%);
+    padding: 44px 24px 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 360px;
+    text-align: left;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 60px;
+    background: var(--gray-50);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .page-hero-inner {
+    max-width: 900px;
+    margin: 0 0 0 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .breadcrumb a, .breadcrumb span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .page-hero h1 span { color: #e8d48a; }
+
+  .page-hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.78);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* Filter bar removed */
+
+  /* ─── MAIN LAYOUT ─── */
+  .main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ─── FEATURED NEWS ─── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blue-deep);
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--blue-light), transparent);
+    border-radius: 2px;
+  }
+
+  .section-label .dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* Featured card */
+  .featured-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  .featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .featured-img {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+  }
+
+  .featured-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .featured-card:hover .featured-img img { transform: scale(1.06); }
+
+  .featured-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--gold);
+    color: var(--blue-deep);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(244,185,66,0.4);
+  }
+
+  .featured-content {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .news-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .news-cat {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--blue-light);
+    color: var(--blue-mid);
+  }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .featured-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+
+  .featured-content p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue-bright);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .read-more svg { transition: transform 0.3s ease; }
+  .read-more:hover { color: var(--blue-deep); }
+  .read-more:hover svg { transform: translateX(4px); }
+
+  /* ─── NEWS GRID ─── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .news-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 1px solid var(--gray-200);
+  }
+
+  .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-light);
+  }
+
+  .card-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+  }
+
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .news-card:hover .card-img img { transform: scale(1.08); }
+
+  .card-cat-badge {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(10,36,99,0.85);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .card-body { padding: 20px; }
+
+  .card-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    line-height: 1.45;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-body p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .card-footer .date { font-size: 12px; color: var(--gray-400); display: flex; align-items: center; gap: 5px; }
+
+  .card-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue-bright);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition);
+  }
+
+  .card-link:hover { color: var(--blue-deep); }
+
+  /* ─── LOAD MORE ─── */
+  .load-more-wrap {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .btn-load-more {
+    background: none;
+    border: 2px solid var(--blue-mid);
+    color: var(--blue-mid);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 36px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-load-more:hover {
+    background: var(--blue-mid);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(30,77,183,0.3);
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+  .sidebar-widget {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  .widget-header {
+    padding: 18px 22px;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .widget-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .widget-header svg { color: var(--gold); flex-shrink: 0; }
+
+  /* Hot News Widget */
+  .hot-news-list { padding: 8px 0; }
+
+  .hot-news-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    transition: var(--transition);
+    align-items: flex-start;
+  }
+
+  .hot-news-item:last-child { border-bottom: none; }
+  .hot-news-item:hover { background: var(--blue-light); }
+
+  .hot-num {
+    width: 28px; height: 28px;
+    background: var(--blue-light);
+    color: var(--blue-mid);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: var(--transition);
+  }
+
+  .hot-news-item:nth-child(1) .hot-num { background: var(--gold); color: var(--blue-deep); }
+  .hot-news-item:nth-child(2) .hot-num { background: #e2e8f0; color: var(--gray-700); }
+  .hot-news-item:nth-child(3) .hot-num { background: #fed7aa; color: #c2410c; }
+
+  .hot-news-item:hover .hot-num { transform: scale(1.1); }
+
+  .hot-news-text h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    line-height: 1.5;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hot-news-text span { font-size: 11px; color: var(--gray-400); }
+
+  /* Category Widget */
+  .cat-list { padding: 12px 0; }
+
+  .cat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--gray-100);
+    text-decoration: none;
+  }
+
+  .cat-item:last-child { border-bottom: none; }
+
+  .cat-item:hover { background: var(--blue-light); padding-left: 28px; }
+
+  .cat-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-mid); }
+
+  .cat-item:nth-child(1) .cat-dot { background: #3b82f6; }
+  .cat-item:nth-child(2) .cat-dot { background: #10b981; }
+  .cat-item:nth-child(3) .cat-dot { background: #f59e0b; }
+  .cat-item:nth-child(4) .cat-dot { background: #8b5cf6; }
+  .cat-item:nth-child(5) .cat-dot { background: #ef4444; }
+
+  .cat-name { font-size: 13px; font-weight: 500; color: var(--gray-700); }
+  .cat-count {
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    padding: 2px 8px;
+    border-radius: 20px;
+    transition: var(--transition);
+  }
+
+  .cat-item:hover .cat-count { background: var(--blue-mid); color: white; }
+
+  /* Upcoming events widget styles removed */
+
+  /* Newsletter styles removed */
+
+  /* Video section styles removed */
+
+  /* ─── TAGS CLOUD ─── */
+  .tags-widget .tags-cloud {
+    padding: 18px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--gray-200);
+  }
+
+  .tag-pill:hover { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
+
+  /* ─── NOTIFICATION BAR ─── */
+  .notif-bar {
+    background: linear-gradient(135deg, var(--gold), #f59e0b);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .notif-bar .label {
+    background: var(--blue-deep);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+
+  .ticker-wrap { flex: 1; overflow: hidden; }
+
+  .ticker {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+  }
+
+  .ticker span::before { content: '• '; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer-top {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.3fr 1.5fr;
+    gap: 48px;
+  }
+
+  .footer-brand .logo { margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .social-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 16px;
+    transition: var(--transition);
+  }
+
+  .social-icon:hover { background: var(--gold); border-color: var(--gold); color: var(--blue-deep); transform: translateY(-3px); }
+
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(244,185,66,0.4);
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-col ul li a::before { content: '›'; color: var(--gold); font-size: 16px; line-height: 1; }
+  .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+
+  .footer-contact-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 32px; height: 32px;
+    background: rgba(244,185,66,0.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .footer-contact-item span { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  /* ─── FOOTER PROGRAM ─── */
+  .footer-program {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .program-ban { }
+
+  .program-ban-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .program-ban-icon { font-size: 15px; }
+
+  .program-ban-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+
+  .program-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 14px 0;
+  }
+
+  .footer-program .footer-col ul { list-style: none; }
+  .footer-program ul { list-style: none; }
+  .footer-program ul li { margin-bottom: 9px; }
+  .footer-program ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-program ul li a::before { content: '›'; color: var(--gold); font-size: 16px; line-height: 1; }
+  .footer-program ul li a:hover { color: var(--gold); padding-left: 4px; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 24px;
+  }
+
+  .footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ─── FLOAT-UP (moved into floating contacts) ─── */
+    .float-up {
+      width: 56px; height: 56px;
+      background: var(--blue-deep);
+      color: white;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 30px rgba(10,36,99,0.18);
+      transition: var(--transition);
+      opacity: 1;
+    }
+
+    .float-up.visible { opacity: 1; transform: translateY(0); }
+    .float-up:hover { transform: translateY(-4px) scale(1.02); }
+
+  /* ─── FLOATING CONTACTS ─── */
+  .float-contacts {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 1200;
+    align-items: center;
+  }
+
+  .float-btn {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(10,36,99,0.12);
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s;
+    font-size: 20px;
+    color: white;
+  }
+
+  .float-btn:hover { transform: translateY(-4px) scale(1.03); }
+  .float-zalo { background: linear-gradient(135deg, #06b6d4, #10b981); }
+  .float-chat { background: #2563eb; }
+  .float-phone { background: #25D366; color: white; }
+
+
+  /* ghost/disabled style for the last button */
+
+  
+
+  /* ─── SEARCH WIDGET ─── */
+  .search-widget-body {
+    padding: 18px 20px;
+  }
+
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  .search-input-wrap:focus-within {
+    border-color: var(--blue-bright);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(26,95,168,0.1);
+  }
+
+  .search-input-wrap input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--gray-800);
+  }
+
+  .search-input-wrap input::placeholder { color: var(--gray-400); }
+
+  .search-input-wrap button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+  }
+
+  .search-input-wrap button:hover { color: var(--blue-bright); }
+
+  .search-clear-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 0;
+    color: var(--gray-400);
+    font-size: 16px;
+    line-height: 1;
+    transition: var(--transition);
+  }
+
+  .search-clear-btn:hover { color: var(--blue-deep); }
+
+  .search-result-count {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--gray-600);
+    min-height: 18px;
+    display: none;
+  }
+
+  /* ─── ANIMATION CLASSES ─── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE NAV OVERLAY ─── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,36,99,0.98);
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: var(--transition);
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-nav a:hover { color: var(--gold); background: rgba(255,255,255,0.08); }
+  .mobile-nav a.active { color: var(--gold); }
+
+  .mobile-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .main-content { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    nav, .header-search { display: none; }
+    .menu-toggle { display: flex; }
+
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-img { min-height: 220px; }
+
+    .news-grid { grid-template-columns: 1fr; }
+
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+
+    .video-stats { grid-template-columns: repeat(3, 1fr); }
+
+    .page-hero { padding: 48px 16px 40px; }
+
+    /* Keep floating contacts visible and away from overlay scrollbars on smaller screens */
+    .float-contacts { right: 20px; bottom: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-inner { padding: 0 16px; }
+    .main-content { padding: 32px 16px 60px; }
+    .page-hero { padding: 40px 16px 36px; }
+    .video-stats { grid-template-columns: 1fr 1fr; }
+    .v-stat:last-child { grid-column: 1 / -1; }
+
+    /* Slightly smaller floating buttons on very small screens */
+    .float-contacts { right: 12px; bottom: 16px; }
+    .float-btn { width: 44px; height: 44px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar">
+  <span class="label">🔔 Thông báo</span>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="trangchu.html" class="logo">
+      <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+      <div class="logo-text">
+        <span class="logo-name">THPT C Kim Bảng</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="trangchu.html">Trang chủ</a>
+      <a href="chuongtrinh.html">Chương trình đào tạo</a>
+      <a href="tuyensinh.html">Tuyển sinh</a>
+      <a href="tintuc.html" class="active">Tin tức</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="closeMenu">✕</button>
+  <a href="trangchu.html">🏠 Trang chủ</a>
+  <a href="chuongtrinh.html">📚 Chương trình đào tạo</a>
+  <a href="tuyensinh.html">📝 Tuyển sinh</a>
+  <a href="tintuc.html" class="active">📰 Tin tức</a>
+  <a href="lienhe.html">📞 Liên hệ</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="trangchu.html">Trang chủ</a><span class="sep">›</span>
+      <span class="current">Tin tức &amp; Sự kiện</span>
+    </div>
+    <h1>Tin Tức &amp; <span>Sự Kiện</span></h1>
+    <p>Cập nhật những thông tin mới nhất về hoạt động giảng dạy, thành tích học sinh và các sự kiện nổi bật của trường THPT C Kim Bảng.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR removed -->
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+
+    <!-- NEWS GRID -->
+    <div class="section-label fade-in" style="transition-delay:0.1s">
+      <span class="dot"></span>
+      <h2>Tin tức mới nhất</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="news-grid" id="newsGrid">
+
+      <div class="news-card fade-in" data-cat="thanhtich" onclick="location.href='chitiet.html?id=1'" data-title="12 Học Sinh Đoạt Giải Học Sinh Giỏi Cấp Tỉnh Năm 2024" data-desc="Trong kỳ thi học sinh giỏi cấp tỉnh Hà Nam năm 2024, trường THPT C Kim Bảng đã có 12 em đoạt giải, trong đó có 2 giải Nhất, 4 giải Nhì và 6 giải Ba." style="transition-delay:0.1s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Học sinh giỏi">
+          <span class="card-cat-badge">Thành tích</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat">Thành tích</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>20/11/2024</span></div>
+          <h4>12 Học Sinh Đoạt Giải Học Sinh Giỏi Cấp Tỉnh Năm 2024</h4>
+          <p>Trong kỳ thi học sinh giỏi cấp tỉnh Hà Nam năm 2024, trường THPT C Kim Bảng đã có 12 em đoạt giải, trong đó có 2 giải Nhất, 4 giải Nhì và 6 giải Ba.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=1" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card fade-in" data-cat="hoatdong" onclick="location.href='chitiet.html?id=2'" data-title="Hội Trại Truyền Thống 26/3: Ngọn Lửa Tuổi Trẻ Rực Sáng" data-desc="Hơn 1.500 học sinh tham gia hội trại 26/3 với chủ đề Vì màu xanh quê hương – một sự kiện đặc biệt mang nhiều ý nghĩa giáo dục tinh thần yêu nước." style="transition-delay:0.15s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80" alt="Hội trại">
+          <span class="card-cat-badge">Ngoại khóa</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat" style="background:#dcfce7;color:#166534">Ngoại khóa</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>15/11/2024</span></div>
+          <h4>Hội Trại Truyền Thống 26/3: Ngọn Lửa Tuổi Trẻ Rực Sáng</h4>
+          <p>Hơn 1.500 học sinh tham gia hội trại 26/3 với chủ đề "Vì màu xanh quê hương" – một sự kiện đặc biệt mang nhiều ý nghĩa giáo dục tinh thần yêu nước.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=2" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card fade-in" data-cat="thongbao" onclick="location.href='chitiet.html?id=3'" data-title="Lịch Kiểm Tra Cuối Học Kỳ 1 Năm Học 2024–2025" data-desc="Ban giám hiệu thông báo lịch kiểm tra cuối học kỳ 1 cho toàn thể học sinh. Đề nghị các em chuẩn bị và ôn tập đầy đủ theo hướng dẫn của giáo viên bộ môn." style="transition-delay:0.2s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Thông báo">
+          <span class="card-cat-badge">Thông báo</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat" style="background:#fef3c7;color:#92400e">Thông báo</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>10/11/2024</span></div>
+          <h4>Lịch Kiểm Tra Cuối Học Kỳ 1 Năm Học 2024–2025</h4>
+          <p>Ban giám hiệu thông báo lịch kiểm tra cuối học kỳ 1 cho toàn thể học sinh. Đề nghị các em chuẩn bị và ôn tập đầy đủ theo hướng dẫn của giáo viên bộ môn.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=3" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card fade-in" data-cat="sukien" onclick="location.href='chitiet.html?id=4'" data-title="Đêm Văn Nghệ Chào Mừng Ngày Nhà Giáo Việt Nam 20/11" data-desc="Đêm văn nghệ chủ đề Tri ân thầy cô được tổ chức hoành tráng với sự tham gia của hơn 500 học sinh biểu diễn, mang đến những tiết mục đặc sắc và xúc động." style="transition-delay:0.25s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Văn nghệ">
+          <span class="card-cat-badge">Sự kiện</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat" style="background:#ede9fe;color:#5b21b6">Sự kiện</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>08/11/2024</span></div>
+          <h4>Đêm Văn Nghệ Chào Mừng Ngày Nhà Giáo Việt Nam 20/11</h4>
+          <p>Đêm văn nghệ chủ đề "Tri ân thầy cô" được tổ chức hoành tráng với sự tham gia của hơn 500 học sinh biểu diễn, mang đến những tiết mục đặc sắc và xúc động.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=4" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card fade-in" data-cat="tuyensinh" onclick="location.href='chitiet.html?id=5'" data-title="Thông Báo Tuyển Sinh Lớp 10 Năm Học 2025–2026" data-desc="Trường THPT C Kim Bảng thông báo kế hoạch tuyển sinh lớp 10 năm học 2025–2026. Chỉ tiêu 480 học sinh, ưu tiên học sinh trên địa bàn huyện Kim Bảng." style="transition-delay:0.3s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600&q=80" alt="Tuyển sinh">
+          <span class="card-cat-badge">Tuyển sinh</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat" style="background:#fee2e2;color:#991b1b">Tuyển sinh</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>01/11/2024</span></div>
+          <h4>Thông Báo Tuyển Sinh Lớp 10 Năm Học 2025–2026</h4>
+          <p>Trường THPT C Kim Bảng thông báo kế hoạch tuyển sinh lớp 10 năm học 2025–2026. Chỉ tiêu 480 học sinh, ưu tiên học sinh trên địa bàn huyện Kim Bảng.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=5" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card fade-in" data-cat="hoatdong" onclick="location.href='chitiet.html?id=6'" data-title="Hội Thao Truyền Thống Lần Thứ 30 Diễn Ra Thành Công Rực Rỡ" data-desc="Hội thao truyền thống lần thứ 30 của trường với sự tham gia của toàn thể học sinh 3 khối lớp đã kết thúc trong tiếng reo hò và những khoảnh khắc đáng nhớ." style="transition-delay:0.35s">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80" alt="Thể thao">
+          <span class="card-cat-badge">Ngoại khóa</span>
+        </div>
+        <div class="card-body">
+          <div class="news-meta"><span class="news-cat" style="background:#dcfce7;color:#166534">Ngoại khóa</span><span class="news-date"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>28/10/2024</span></div>
+          <h4>Hội Thao Truyền Thống Lần Thứ 30 Diễn Ra Thành Công Rực Rỡ</h4>
+          <p>Hội thao truyền thống lần thứ 30 của trường với sự tham gia của toàn thể học sinh 3 khối lớp đã kết thúc trong tiếng reo hò và những khoảnh khắc đáng nhớ.</p>
+          <div class="card-footer">
+            <a href="chitiet.html?id=6" class="card-link">Xem thêm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end news-grid -->
+
+    <!-- LOAD MORE -->
+    <div class="load-more-wrap fade-in">
+      <button class="btn-load-more" id="loadMoreBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.65"/></svg>
+        Tải thêm bài viết
+      </button>
+    </div>
+
+  </div><!-- end left-col -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Search Widget -->
+    <div class="sidebar-widget fade-in">
+      <div class="widget-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>Tìm kiếm tin tức</h3>
+      </div>
+      <div class="search-widget-body">
+        <div class="search-input-wrap">
+          <input type="text" id="newsSearchInput" placeholder="Nhập từ khóa tìm kiếm..." autocomplete="off">
+          <button id="newsSearchClear" class="search-clear-btn" title="Xóa" style="display:none">✕</button>
+          <button id="newsSearchBtn" title="Tìm kiếm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+        <div class="search-result-count" id="searchResultCount"></div>
+      </div>
+    </div>
+
+    <!-- Hot News -->
+    <div class="sidebar-widget fade-in">
+      <div class="widget-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <h3>Tin hot nhất</h3>
+      </div>
+      <div class="hot-news-list">
+        <div class="hot-news-item">
+          <span class="hot-num">1</span>
+          <div class="hot-news-text">
+            <h5>100% học sinh lớp 12 tốt nghiệp THPT năm 2024</h5>
+            <span>📅 22/07/2024 · 👁 4.2k lượt xem</span>
+          </div>
+        </div>
+        <div class="hot-news-item">
+          <span class="hot-num">2</span>
+          <div class="hot-news-text">
+            <h5>Đội tuyển Toán đoạt 1 giải Nhất thi HSG Quốc Gia</h5>
+            <span>📅 15/06/2024 · 👁 3.8k lượt xem</span>
+          </div>
+        </div>
+        <div class="hot-news-item">
+          <span class="hot-num">3</span>
+          <div class="hot-news-text">
+            <h5>Trường được công nhận đạt chuẩn quốc gia mức độ 2</h5>
+            <span>📅 10/05/2024 · 👁 3.1k lượt xem</span>
+          </div>
+        </div>
+        <div class="hot-news-item">
+          <span class="hot-num">4</span>
+          <div class="hot-news-text">
+            <h5>Chương trình học bổng khuyến học năm học 2024–2025</h5>
+            <span>📅 01/09/2024 · 👁 2.7k lượt xem</span>
+          </div>
+        </div>
+        <div class="hot-news-item">
+          <span class="hot-num">5</span>
+          <div class="hot-news-text">
+            <h5>Hội thảo hướng nghiệp "Con đường vào đại học" 2024</h5>
+            <span>📅 18/08/2024 · 👁 2.3k lượt xem</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-widget fade-in" style="transition-delay:0.1s">
+      <div class="widget-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <h3>Chuyên mục</h3>
+      </div>
+      <div class="cat-list">
+        <a href="#" class="cat-item"><div class="cat-left"><span class="cat-dot"></span><span class="cat-name">Hoạt động ngoại khóa</span></div><span class="cat-count">24</span></a>
+        <a href="#" class="cat-item"><div class="cat-left"><span class="cat-dot"></span><span class="cat-name">Thành tích học sinh</span></div><span class="cat-count">18</span></a>
+        <a href="#" class="cat-item"><div class="cat-left"><span class="cat-dot"></span><span class="cat-name">Thông báo nhà trường</span></div><span class="cat-count">35</span></a>
+        <a href="#" class="cat-item"><div class="cat-left"><span class="cat-dot"></span><span class="cat-name">Sự kiện trường học</span></div><span class="cat-count">12</span></a>
+        <a href="#" class="cat-item"><div class="cat-left"><span class="cat-dot"></span><span class="cat-name">Tuyển sinh</span></div><span class="cat-count">9</span></a>
+      </div>
+    </div>
+
+    <!-- Upcoming Events widget removed -->
+
+    <!-- Newsletter widget removed -->
+
+  </aside>
+</div><!-- end main-content -->
+
+<!-- VIDEO SECTION removed -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+        <div class="logo-text">
+          <span class="logo-name">THPT C Kim Bảng</span>
+          <span class="logo-sub">Hà Nam · Thành lập 1975</span>
+        </div>
+      </a>
+      <p>Trường THPT C Kim Bảng là một trong những ngôi trường có truyền thống lâu đời tại tỉnh Hà Nam, với hơn 20 năm đào tạo và cống hiến cho sự nghiệp giáo dục.</p>
+      <div class="footer-socials">
+        <a href="https://web.facebook.com/profile.php?id=61575800982426&locale=vi_VN" target="_blank" rel="noopener" class="social-icon" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://zalo.me/0865619841" class="social-icon" title="Zalo" onclick="window.location='zalo://conversation?phone=0865619841'; setTimeout(function(){window.open('https://zalo.me/0865619841','_blank')},500); return false;">
+          <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M24 4C13 4 4 13 4 24c0 4.6 1.6 8.8 4.2 12.1L5.1 43l7.2-2.3C15.4 42.5 19.6 44 24 44c11 0 20-9 20-20S35 4 24 4zm10.2 27.4c-.4 1.1-2.3 2.1-3.2 2.2-.8.1-1.8.1-2.9-.2--.7-.2-1.5-.5-2.6-1-4.5-1.9-7.4-6.4-7.7-6.7-.3-.3-2.1-2.8-2.1-5.3s1.3-3.8 1.8-4.3c.5-.5 1-.6 1.4-.6.3 0 .7 0 1 .1.3 0 .7-.1 1.1.8.4 1 1.4 3.4 1.5 3.7.1.3.2.6 0 1-.2.3-.3.5-.6.8-.3.3-.5.5-.8.8-.3.3-.1.6.1.9.7 1 1.7 2.2 2.8 3.1 1.3 1.1 2.4 1.5 2.7 1.6.3.1.6.1.8-.1.3-.3 1.1-1.3 1.4-1.7.3-.4.6-.3 1-.2.4.2 2.8 1.3 3.2 1.5.4.2.7.3.8.5.1.4-.1 1.5-.5 2.6z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên kết nhanh</h4>
+      <ul>
+        <li><a href="trangchu.html">Trang chủ</a></li>
+        <li><a href="chuongtrinh.html">Chương trình đào tạo</a></li>
+        <li><a href="tuyensinh.html">Tuyển sinh</a></li>
+        <li><a href="tintuc.html">Tin tức & Sự kiện</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chương trình</h4>
+      <div class="footer-program">
+        <ul>
+          <li><a href="#">Ban Tự nhiên</a></li>
+          <li><a href="#">Ban Xã hội</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-col" id="contact">
+      <h4>Liên hệ</h4>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span>Thị trấn Quế, Kim Bảng, Hà Nam</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <span>(0226) 386 xxxx</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span>thptckimbang@hanam.edu.vn</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>© 2024 Trường THPT C Kim Bảng – Hà Nam. Bảo lưu mọi quyền.</p>
+
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACTS -->
+<div class="float-contacts">
+  <button id="scrollTop" class="float-btn float-up" title="Lên đầu trang">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <a href="https://m.me/61575800982426" target="_blank" rel="noopener" class="float-btn float-chat" title="Nhắn tin Messenger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+
+  <a href="tel:02263861234" class="float-btn float-phone" title="Gọi điện">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
+
+
+<script>
+  // Menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeMenu = document.getElementById('closeMenu');
+
+  menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  // Scroll top
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) scrollTopBtn.classList.add('visible');
+    else scrollTopBtn.classList.remove('visible');
+  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Filter tabs removed (filter UI deleted)
+
+  // Load more simulation
+  document.getElementById('loadMoreBtn').addEventListener('click', function() {
+    this.textContent = '✓ Đã hiển thị tất cả bài viết';
+    this.disabled = true;
+    this.style.opacity = '0.6';
+    this.style.cursor = 'default';
+  });
+
+  // Newsletter handler removed (widget deleted)
+
+  // Sticky header shadow on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 10) header.style.boxShadow = '0 4px 32px rgba(10,36,99,0.35)';
+    else header.style.boxShadow = '0 2px 24px rgba(10,36,99,0.25)';
+  });
+
+  // ─── NEWS SEARCH ───
+  function normalizeText(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  }
+
+  function createOffsetMap(original) {
+    const map = [0]
+    let normalizedPos = 0
+    for (let i = 0; i < original.length; i++) {
+      const normalized = normalizeText(original[i])
+      normalizedPos += normalized.length
+      map[normalizedPos] = i + 1
+    }
+    return map
+  }
+
+  function findMatchInOriginal(original, normalizedKeyword) {
+    const normalized = normalizeText(original)
+    const offsetMap = createOffsetMap(original)
+    const matches = []
+    let searchIndex = 0
+    while ((searchIndex = normalized.indexOf(normalizedKeyword, searchIndex)) !== -1) {
+      const startPos = offsetMap[searchIndex]
+      const endPos = offsetMap[searchIndex + normalizedKeyword.length]
+      if (startPos !== undefined && endPos !== undefined) {
+        matches.push({ start: startPos, end: endPos })
+      }
+      searchIndex += normalizedKeyword.length
+    }
+    return matches
+  }
+
+  function highlightKeyword(text, keyword) {
+    if (!keyword.trim()) return text
+    const normalizedKeyword = normalizeText(keyword)
+    const matches = findMatchInOriginal(text, normalizedKeyword)
+    if (matches.length === 0) return text
+    const parts = []
+    let lastIndex = 0
+    matches.forEach(match => {
+      if (match.start > lastIndex) parts.push(text.substring(lastIndex, match.start))
+      parts.push(`<mark style="background:rgba(201,168,76,0.4);font-weight:700;padding:1px 3px;border-radius:3px;">${text.substring(match.start, match.end)}</mark>`)
+      lastIndex = match.end
+    })
+    if (lastIndex < text.length) parts.push(text.substring(lastIndex))
+    return parts.join('')
+  }
+
+  function searchNews() {
+    const keyword = document.getElementById('newsSearchInput').value.trim()
+    const cards = document.querySelectorAll('#newsGrid .news-card')
+    const clearBtn = document.getElementById('newsSearchClear')
+    const countEl = document.getElementById('searchResultCount')
+    const normalizedKeyword = normalizeText(keyword)
+    let visibleCount = 0
+
+    cards.forEach(card => {
+      const title = card.getAttribute('data-title') || ''
+      const desc = card.getAttribute('data-desc') || ''
+      const titleEl = card.querySelector('h4')
+      const descEl = card.querySelector('.card-body > p')
+
+      const normalizedTitle = normalizeText(title)
+      const normalizedDesc = normalizeText(desc)
+
+      if (keyword === '' || normalizedTitle.includes(normalizedKeyword) || normalizedDesc.includes(normalizedKeyword)) {
+        card.style.display = ''
+        visibleCount++
+        if (keyword !== '' && titleEl) titleEl.innerHTML = highlightKeyword(title, keyword)
+        else if (titleEl) titleEl.textContent = title
+        if (keyword !== '' && descEl) descEl.innerHTML = highlightKeyword(desc, keyword)
+        else if (descEl) descEl.textContent = desc
+      } else {
+        card.style.display = 'none'
+      }
+    })
+
+    // Clear button
+    clearBtn.style.display = keyword !== '' ? 'block' : 'none'
+
+    // Result count
+    if (keyword !== '') {
+      countEl.style.display = 'block'
+      if (visibleCount === 0) {
+        countEl.innerHTML = '<span style="color:#ef4444">Không tìm thấy bài viết phù hợp</span>'
+      } else {
+        countEl.textContent = `Tìm thấy ${visibleCount} bài viết`
+      }
+    } else {
+      countEl.style.display = 'none'
+    }
+
+    // No results message in grid
+    const grid = document.getElementById('newsGrid')
+    let noMsg = grid.querySelector('.no-results-msg')
+    if (keyword !== '' && visibleCount === 0) {
+      if (!noMsg) {
+        noMsg = document.createElement('div')
+        noMsg.className = 'no-results-msg'
+        noMsg.style.cssText = 'grid-column:1/-1;padding:40px 24px;text-align:center;color:var(--gray-400);font-size:15px;'
+        noMsg.innerHTML = '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;display:block;opacity:0.4"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Không tìm thấy bài viết phù hợp'
+        grid.appendChild(noMsg)
+      }
+      noMsg.style.display = 'block'
+    } else if (noMsg) {
+      noMsg.style.display = 'none'
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('newsSearchInput')
+    const searchBtn = document.getElementById('newsSearchBtn')
+    const clearBtn = document.getElementById('newsSearchClear')
+
+    if (searchInput) {
+      searchInput.addEventListener('input', searchNews)
+      searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') searchNews() })
+    }
+    if (searchBtn) searchBtn.addEventListener('click', searchNews)
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = ''
+        searchNews()
+        searchInput.focus()
+      })
+    }
+  })
+</script>
+</body>
+</html>

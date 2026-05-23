@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Chi Tiết Bài Viết – Trường THPT C Kim Bảng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0b1f4a;
+    --blue-mid: #16356e;
+    --blue-bright: #1a5fa8;
+    --blue-light: #dbeafe;
+    --gold: #c9a84c;
+    --gold-light: #e8d48a;
+    --gold-pale: #fdf8eb;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --shadow-sm: 0 1px 3px rgba(10,36,99,0.08);
+    --shadow-md: 0 4px 16px rgba(10,36,99,0.12);
+    --shadow-lg: 0 12px 40px rgba(10,36,99,0.18);
+    --shadow-xl: 0 24px 64px rgba(10,36,99,0.22);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,36,99,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(10,36,99,0.25);
+    transition: var(--transition);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(10,36,99,0.18);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo-icon img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+
+  nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+  nav a.active { color: var(--gold); background: rgba(244,185,66,0.15); }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    gap: 8px;
+    transition: var(--transition);
+  }
+
+  .header-search:focus-within {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(244,185,66,0.5);
+  }
+
+  .header-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-size: 13px;
+    width: 140px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+
+  .header-search input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+  }
+
+  .search-btn:hover { color: var(--gold); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px; height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  /* ─── NOTIFICATION BAR ─── */
+  .notif-bar {
+    background: linear-gradient(135deg, var(--gold), #f59e0b);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .notif-bar .label {
+    background: var(--blue-deep);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+
+  .ticker-wrap { flex: 1; overflow: hidden; }
+  .ticker {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+  }
+
+  .ticker span::before { content: '• '; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    margin-top: 72px;
+    background: linear-gradient(135deg, #0b1f4a 0%, #16356e 55%, #1a5fa8 100%);
+    padding: 44px 24px 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 360px;
+    text-align: left;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 60px;
+    background: var(--gray-50);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .page-hero-inner {
+    max-width: 900px;
+    margin: 0 0 0 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a, .breadcrumb span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .page-hero h1 span { color: #e8d48a; }
+
+  .page-hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.78);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ─── ARTICLE TITLE BLOCK (below hero) ─── */
+  .article-header {
+    padding: 32px 44px 0;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 0;
+  }
+
+  .article-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .article-header-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  .article-header-date svg { flex-shrink: 0; }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    color: var(--blue-deep);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-wrap {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+  }
+
+  .article-hero-img {
+    width: 100%;
+    aspect-ratio: 16/7;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-content {
+    padding: 40px 44px;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .article-tag {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--blue-light);
+    color: var(--blue-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .article-tag.gold { background: #fef3c7; color: #92400e; }
+  .article-tag.green { background: #dcfce7; color: #166534; }
+  .article-tag.purple { background: #ede9fe; color: #5b21b6; }
+  .article-tag.red { background: #fee2e2; color: #991b1b; }
+
+  .article-lead {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    background: var(--gray-50);
+    border-left: 4px solid var(--blue-bright);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin: 36px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray-100);
+  }
+
+  .article-body h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--blue-mid);
+    margin: 28px 0 12px;
+  }
+
+  .article-body p {
+    font-size: 15px;
+    color: var(--gray-700);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .article-body ul, .article-body ol {
+    margin: 0 0 20px 20px;
+  }
+
+  .article-body li {
+    font-size: 15px;
+    color: var(--gray-700);
+    line-height: 1.9;
+    margin-bottom: 8px;
+  }
+
+  .article-body li::marker { color: var(--gold); }
+
+
+  .article-inline-img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin: 28px 0;
+    box-shadow: var(--shadow-md);
+    display: block;
+    object-fit: cover;
+    max-height: 420px;
+  }
+
+  .img-caption {
+    font-size: 12.5px;
+    color: var(--gray-400);
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+
+  .article-divider {
+    border: none;
+    border-top: 2px solid var(--gray-100);
+    margin: 40px 0;
+  }
+
+  /* Share + Author bar */
+  .article-footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px 0 0;
+    border-top: 2px solid var(--gray-100);
+    margin-top: 40px;
+  }
+
+  .share-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-right: 4px;
+  }
+
+  .share-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+  }
+
+  .share-btn.fb { background: #1877f2; color: white; }
+  .share-btn.fb:hover { background: #1565c0; transform: translateY(-2px); }
+  .share-btn.copy { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .share-btn.copy:hover { background: var(--blue-light); color: var(--blue-mid); transform: translateY(-2px); }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue-bright);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 2px solid var(--blue-light);
+    background: var(--white);
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 28px;
+    display: inline-flex;
+  }
+
+  .back-btn:hover {
+    background: var(--blue-light);
+    border-color: var(--blue-bright);
+    transform: translateX(-4px);
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+  .sidebar-widget {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  .widget-header {
+    padding: 18px 22px;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .widget-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .widget-header svg { color: var(--gold); flex-shrink: 0; }
+
+  /* Related news */
+  .related-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    transition: var(--transition);
+    align-items: flex-start;
+    text-decoration: none;
+  }
+
+  .related-item:last-child { border-bottom: none; }
+  .related-item:hover { background: var(--blue-light); }
+
+  .related-img {
+    width: 70px; height: 54px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .related-text h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    line-height: 1.5;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .related-text span { font-size: 11px; color: var(--gray-400); }
+
+  /* Hot News Widget */
+  .hot-news-list { padding: 8px 0; }
+
+  .hot-news-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    transition: var(--transition);
+    align-items: flex-start;
+  }
+
+  .hot-news-item:last-child { border-bottom: none; }
+  .hot-news-item:hover { background: var(--blue-light); }
+
+  .hot-num {
+    width: 28px; height: 28px;
+    background: var(--blue-light);
+    color: var(--blue-mid);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: var(--transition);
+  }
+
+  .hot-news-item:nth-child(1) .hot-num { background: var(--gold); color: var(--blue-deep); }
+  .hot-news-item:nth-child(2) .hot-num { background: #e2e8f0; color: var(--gray-700); }
+  .hot-news-item:nth-child(3) .hot-num { background: #fed7aa; color: #c2410c; }
+  .hot-news-item:hover .hot-num { transform: scale(1.1); }
+
+  .hot-news-text h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    line-height: 1.5;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hot-news-text span { font-size: 11px; color: var(--gray-400); }
+
+  /* Tags */
+  .tags-cloud {
+    padding: 18px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--gray-200);
+  }
+
+  .tag-pill:hover { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
+
+  /* Progress bar */
+  .reading-progress {
+    position: fixed;
+    top: 72px; left: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--blue-bright));
+    z-index: 999;
+    transition: width 0.1s linear;
+    width: 0%;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer-top {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.3fr 1.5fr;
+    gap: 48px;
+  }
+
+  .footer-brand .logo { margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .social-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 16px;
+    transition: var(--transition);
+  }
+
+  .social-icon:hover { background: var(--gold); border-color: var(--gold); color: var(--blue-deep); transform: translateY(-3px); }
+
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(244,185,66,0.4);
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-col ul li a::before { content: '›'; color: var(--gold); font-size: 16px; line-height: 1; }
+  .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+
+  .footer-contact-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 32px; height: 32px;
+    background: rgba(244,185,66,0.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .footer-contact-item span { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 24px;
+  }
+
+  .footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ─── FLOATING ─── */
+  .float-contacts {
+    position: fixed;
+    right: 28px; bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 1200;
+    align-items: center;
+  }
+
+  .float-btn {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(10,36,99,0.12);
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s;
+    font-size: 20px;
+    color: white;
+  }
+
+  .float-btn:hover { transform: translateY(-4px) scale(1.03); }
+
+  .float-up {
+    background: var(--blue-deep);
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: var(--transition);
+  }
+
+  .float-up.visible { opacity: 1; transform: translateY(0); }
+  .float-chat { background: #2563eb; }
+  .float-phone { background: #25D366; color: white; }
+
+
+
+  /* ─── MOBILE NAV ─── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,36,99,0.98);
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: var(--transition);
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-nav a:hover { color: var(--gold); background: rgba(255,255,255,0.08); }
+  .mobile-nav a.active { color: var(--gold); }
+
+  .mobile-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ─── ANIMATION ─── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue-deep);
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--blue-light), transparent);
+    border-radius: 2px;
+  }
+
+  .section-label .dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* Copy toast */
+  .toast {
+    position: fixed;
+    bottom: 100px; right: 32px;
+    background: var(--blue-deep);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .main-content { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    nav, .header-search { display: none; }
+    .menu-toggle { display: flex; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .page-hero { padding: 48px 16px 40px; }
+    .page-hero-inner { margin: 0; }
+    .article-content { padding: 24px 20px; }
+    .article-header { padding: 20px 20px 0; }
+    .float-contacts { right: 20px; bottom: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-inner { padding: 0 16px; }
+    .main-content { padding: 28px 16px 60px; }
+    .float-contacts { right: 12px; bottom: 16px; }
+    .float-btn { width: 44px; height: 44px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar">
+  <span class="label">🔔 Thông báo</span>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="trangchu.html" class="logo">
+      <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+      <div class="logo-text">
+        <span class="logo-name">THPT C Kim Bảng</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="trangchu.html">Trang chủ</a>
+      <a href="chuongtrinh.html">Chương trình đào tạo</a>
+      <a href="tuyensinh.html">Tuyển sinh</a>
+      <a href="tintuc.html" class="active">Tin tức</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="closeMenu">✕</button>
+  <a href="trangchu.html">🏠 Trang chủ</a>
+  <a href="chuongtrinh.html">📚 Chương trình đào tạo</a>
+  <a href="tuyensinh.html">📝 Tuyển sinh</a>
+  <a href="tintuc.html" class="active">📰 Tin tức</a>
+  <a href="lienhe.html">📞 Liên hệ</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" id="pageHero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="trangchu.html">Trang chủ</a>
+      <span class="sep">›</span>
+      <a href="tintuc.html">Tin tức &amp; Sự kiện</a>
+      <span class="sep">›</span>
+      <span class="current" id="heroBreadcrumbTitle">Chi tiết bài viết</span>
+    </div>
+    <h1>Tin Tức &amp; <span>Sự Kiện</span></h1>
+    <p>Cập nhật những thông tin mới nhất về hoạt động giảng dạy, thành tích học sinh và các sự kiện nổi bật của trường THPT C Kim Bảng.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <!-- ARTICLE -->
+  <div class="left-col">
+
+    <button class="back-btn" onclick="window.location.href='tintuc.html'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Quay lại danh sách tin tức
+    </button>
+
+    <div class="article-wrap fade-in" id="articleWrap">
+      <!-- Dynamic content injected here -->
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Hot News -->
+    <div class="sidebar-widget fade-in">
+      <div class="widget-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <h3>Tin hot nhất</h3>
+      </div>
+      <div class="hot-news-list">
+        <div class="hot-news-item"><span class="hot-num">1</span><div class="hot-news-text"><h5>100% học sinh lớp 12 tốt nghiệp THPT năm 2024</h5><span>📅 22/07/2024 · 👁 4.2k lượt xem</span></div></div>
+        <div class="hot-news-item"><span class="hot-num">2</span><div class="hot-news-text"><h5>Đội tuyển Toán đoạt 1 giải Nhất thi HSG Quốc Gia</h5><span>📅 15/06/2024 · 👁 3.8k lượt xem</span></div></div>
+        <div class="hot-news-item"><span class="hot-num">3</span><div class="hot-news-text"><h5>Trường được công nhận đạt chuẩn quốc gia mức độ 2</h5><span>📅 10/05/2024 · 👁 3.1k lượt xem</span></div></div>
+        <div class="hot-news-item"><span class="hot-num">4</span><div class="hot-news-text"><h5>Chương trình học bổng khuyến học năm học 2024–2025</h5><span>📅 01/09/2024 · 👁 2.7k lượt xem</span></div></div>
+        <div class="hot-news-item"><span class="hot-num">5</span><div class="hot-news-text"><h5>Hội thảo hướng nghiệp "Con đường vào đại học" 2024</h5><span>📅 18/08/2024 · 👁 2.3k lượt xem</span></div></div>
+      </div>
+    </div>
+
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+        <div class="logo-text">
+          <span class="logo-name">THPT C Kim Bảng</span>
+        </div>
+      </a>
+      <p>Trường THPT C Kim Bảng là một trong những ngôi trường có truyền thống lâu đời tại tỉnh Hà Nam, với hơn 20 năm đào tạo và cống hiến cho sự nghiệp giáo dục.</p>
+      <div class="footer-socials">
+        <a href="https://web.facebook.com/profile.php?id=61575800982426&locale=vi_VN" target="_blank" rel="noopener" class="social-icon" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://zalo.me/0865619841" class="social-icon" title="Zalo" onclick="window.location='zalo://conversation?phone=0865619841'; setTimeout(function(){window.open('https://zalo.me/0865619841','_blank')},500); return false;">
+          <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><path d="M24 4C13 4 4 13 4 24c0 4.6 1.6 8.8 4.2 12.1L5.1 43l7.2-2.3C15.4 42.5 19.6 44 24 44c11 0 20-9 20-20S35 4 24 4zm10.2 27.4c-.4 1.1-2.3 2.1-3.2 2.2-.8.1-1.8.1-2.9-.2-.7-.2-1.5-.5-2.6-1-4.5-1.9-7.4-6.4-7.7-6.7-.3-.3-2.1-2.8-2.1-5.3s1.3-3.8 1.8-4.3c.5-.5 1-.6 1.4-.6.3 0 .7 0 1 .1.3 0 .7-.1 1.1.8.4 1 1.4 3.4 1.5 3.7.1.3.2.6 0 1-.2.3-.3.5-.6.8-.3.3-.5.5-.8.8-.3.3-.1.6.1.9.7 1 1.7 2.2 2.8 3.1 1.3 1.1 2.4 1.5 2.7 1.6.3.1.6.1.8-.1.3-.3 1.1-1.3 1.4-1.7.3-.4.6-.3 1-.2.4.2 2.8 1.3 3.2 1.5.4.2.7.3.8.5.1.4-.1 1.5-.5 2.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên kết nhanh</h4>
+      <ul>
+        <li><a href="trangchu.html">Trang chủ</a></li>
+        <li><a href="chuongtrinh.html">Chương trình đào tạo</a></li>
+        <li><a href="tuyensinh.html">Tuyển sinh</a></li>
+        <li><a href="tintuc.html">Tin tức &amp; Sự kiện</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chương trình</h4>
+      <ul>
+        <li><a href="#">Ban Tự nhiên</a></li>
+        <li><a href="#">Ban Xã hội</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên hệ</h4>
+      <div class="footer-contact-item">
+        <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <span>Thị trấn Quế, Kim Bảng, Hà Nam</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <span>(0226) 386 xxxx</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <span>thptckimbang@hanam.edu.vn</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>© 2024 Trường THPT C Kim Bảng – Hà Nam. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACTS -->
+<div class="float-contacts">
+  <button id="scrollTop" class="float-btn float-up" title="Lên đầu trang">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <a href="https://m.me/61575800982426" target="_blank" rel="noopener" class="float-btn float-chat" title="Nhắn tin Messenger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+  <a href="tel:02263861234" class="float-btn float-phone" title="Gọi điện">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Đã sao chép đường dẫn!</div>
+
+<script>
+// ─── DATA ───
+const articles = {
+  1: {
+    id: 1,
+    title: '12 Học Sinh Đoạt Giải Học Sinh Giỏi Cấp Tỉnh Năm 2024',
+    cat: 'Thành tích',
+    catClass: '',
+    date: '20/11/2024',
+    img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1000&q=80',
+    tags: ['Thành tích', 'Học sinh giỏi', 'Cấp tỉnh'],
+    lead: 'Trong kỳ thi học sinh giỏi cấp tỉnh Hà Nam năm học 2024–2025, trường THPT C Kim Bảng đã ghi dấu ấn đặc biệt với 12 giải thưởng xuất sắc – một thành tích đáng tự hào cho toàn thể thầy cô, học sinh và gia đình.',
+    body: `
+      <h2>Kết quả ấn tượng</h2>
+      <p>Kỳ thi học sinh giỏi cấp tỉnh Hà Nam năm 2024 diễn ra từ ngày 10 đến 15 tháng 11 tại Trường THPT Chuyên Biên Hòa. Với sự chuẩn bị kỹ lưỡng từ đầu năm học, đoàn học sinh THPT C Kim Bảng đã mang về 12 giải thưởng gồm: 2 giải Nhất, 4 giải Nhì và 6 giải Ba ở nhiều môn khác nhau.</p>
+      <p>Đây là một trong những kết quả tốt nhất trong vòng 5 năm trở lại đây của nhà trường, thể hiện nỗ lực không ngừng của thầy và trò trong việc nâng cao chất lượng giáo dục mũi nhọn.</p>
+      <h2>Các môn đoạt giải nổi bật</h2>
+      <ul>
+        <li><strong>Môn Toán:</strong> 1 giải Nhất – em Nguyễn Văn An (lớp 12A1), 1 giải Nhì và 2 giải Ba</li>
+        <li><strong>Môn Văn:</strong> 1 giải Nhất – em Trần Thị Bình (lớp 12A3), 1 giải Nhì</li>
+        <li><strong>Môn Hóa học:</strong> 1 giải Nhì và 2 giải Ba</li>
+        <li><strong>Môn Vật lý:</strong> 1 giải Nhì và 1 giải Ba</li>
+        <li><strong>Môn Sinh học:</strong> 1 giải Ba</li>
+      </ul>
+      <h2>Quá trình chuẩn bị</h2>
+      <p>Ngay từ đầu năm học, nhà trường đã triển khai chương trình bồi dưỡng học sinh giỏi với lịch học ngoài giờ thường xuyên. Các thầy cô giáo bộ môn đã dành nhiều tâm huyết xây dựng tài liệu chuyên sâu, tổ chức các buổi luyện đề và thi thử để học sinh làm quen với áp lực thi cử.</p>
+      <p>Đặc biệt, nhà trường đã mời các chuyên gia, giảng viên đại học đến giao lưu, chia sẻ kinh nghiệm với học sinh, tạo động lực và mở rộng tư duy cho các em trong quá trình ôn luyện.</p>
+      <h2>Định hướng tương lai</h2>
+      <p>Phát huy kết quả đạt được, Ban giám hiệu nhà trường sẽ tiếp tục đầu tư vào công tác bồi dưỡng học sinh giỏi, đặc biệt hướng tới kỳ thi học sinh giỏi Quốc gia năm học tới. Nhà trường cũng có kế hoạch mở rộng các CLB học thuật để tạo môi trường học tập phong phú hơn cho học sinh.</p>
+    `
+  },
+  2: {
+    id: 2,
+    title: 'Hội Trại Truyền Thống 26/3: Ngọn Lửa Tuổi Trẻ Rực Sáng',
+    cat: 'Ngoại khóa',
+    catClass: 'green',
+    date: '15/11/2024',
+    img: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1000&q=80',
+    tags: ['Ngoại khóa', 'Hội trại', '26/3'],
+    lead: 'Hơn 1.500 học sinh của trường THPT C Kim Bảng đã cùng nhau thắp sáng ngọn lửa tuổi trẻ trong Hội trại truyền thống 26/3 năm nay với chủ đề "Vì màu xanh quê hương" – một sự kiện đặc biệt ý nghĩa và đáng nhớ.',
+    body: `
+      <h2>Không khí hội trại sôi nổi</h2>
+      <p>Sáng sớm ngày 26/3, sân trường THPT C Kim Bảng đã ngập tràn tiếng reo hò và màu sắc rực rỡ của hàng chục lều trại được học sinh các lớp dựng lên từ tối hôm trước. Hội trại truyền thống năm nay thu hút toàn bộ 1.500 học sinh của trường tham gia với tinh thần hào hứng, nhiệt tình.</p>
+      <p>Chủ đề "Vì màu xanh quê hương" được thể hiện xuyên suốt qua các hoạt động, từ thiết kế lều trại, trang phục đến các tiết mục văn nghệ và trò chơi tập thể, mang đến thông điệp mạnh mẽ về tình yêu thiên nhiên và trách nhiệm bảo vệ môi trường.</p>
+      <h2>Các hoạt động nổi bật</h2>
+      <ul>
+        <li><strong>Thi dựng lều và trang trí:</strong> 30 đội thi đua sáng tạo, lớp 10A5 đoạt giải Nhất với chủ đề rừng xanh</li>
+        <li><strong>Đêm lửa trại:</strong> Hơn 12 tiết mục văn nghệ đặc sắc từ các lớp, cháy hết mình với âm nhạc và vũ điệu</li>
+        <li><strong>Trò chơi vận động:</strong> Kéo co, nhảy bao bố, thi đua thuyền giấy và nhiều trò chơi đồng đội thú vị</li>
+        <li><strong>Hoạt động xanh:</strong> Trồng cây, thu dọn rác xung quanh khuôn viên trường và khu vực lân cận</li>
+      </ul>
+      <h2>Ý nghĩa giáo dục</h2>
+      <p>Hội trại truyền thống 26/3 không chỉ là ngày hội vui chơi mà còn là hoạt động giáo dục toàn diện, giúp học sinh rèn luyện tinh thần đoàn kết, kỹ năng lãnh đạo và ý thức trách nhiệm với cộng đồng. Đây cũng là dịp để thầy cô và học sinh gần gũi nhau hơn ngoài bốn bức tường lớp học.</p>
+    `
+  },
+  3: {
+    id: 3,
+    title: 'Lịch Kiểm Tra Cuối Học Kỳ 1 Năm Học 2024–2025',
+    cat: 'Thông báo',
+    catClass: 'gold',
+    date: '10/11/2024',
+    img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1000&q=80',
+    tags: ['Thông báo', 'Kiểm tra', 'Học kỳ 1'],
+    lead: 'Ban giám hiệu trường THPT C Kim Bảng trân trọng thông báo lịch kiểm tra cuối học kỳ 1 năm học 2024–2025 đến toàn thể học sinh. Đề nghị các em chủ động chuẩn bị và ôn tập nghiêm túc theo hướng dẫn của giáo viên bộ môn.',
+    body: `
+      <h2>Lịch kiểm tra chi tiết</h2>
+      <p>Kỳ kiểm tra cuối học kỳ 1 năm học 2024–2025 sẽ diễn ra từ ngày <strong>16/12/2024 đến ngày 22/12/2024</strong>. Dưới đây là lịch kiểm tra cụ thể cho từng khối:</p>
+      <h3>Khối lớp 12</h3>
+      <ul>
+        <li><strong>Thứ 2 (16/12):</strong> Toán – 90 phút (7:30–9:00), Văn – 120 phút (13:30–15:30)</li>
+        <li><strong>Thứ 3 (17/12):</strong> Tiếng Anh – 60 phút (7:30–8:30), Lý – 45 phút (13:30–14:15)</li>
+        <li><strong>Thứ 4 (18/12):</strong> Hóa – 45 phút (7:30–8:15), Sinh – 45 phút (13:30–14:15)</li>
+        <li><strong>Thứ 5 (19/12):</strong> Sử – 45 phút (7:30–8:15), Địa – 45 phút (13:30–14:15)</li>
+      </ul>
+      <h3>Khối lớp 11</h3>
+      <ul>
+        <li><strong>Thứ 3 (17/12):</strong> Toán – 90 phút (7:30–9:00)</li>
+        <li><strong>Thứ 4 (18/12):</strong> Văn – 90 phút (7:30–9:00), Tiếng Anh – 60 phút (13:30–14:30)</li>
+        <li><strong>Thứ 5 (19/12):</strong> Lý – 45 phút (7:30–8:15), Hóa – 45 phút (13:30–14:15)</li>
+        <li><strong>Thứ 6 (20/12):</strong> Sinh – 45 phút (7:30–8:15), Sử/Địa – 45 phút (13:30–14:15)</li>
+      </ul>
+      <h2>Lưu ý quan trọng</h2>
+      <ul>
+        <li>Học sinh cần có mặt tại trường trước giờ thi ít nhất <strong>15 phút</strong></li>
+        <li>Trang phục đồng phục, gọn gàng theo quy định</li>
+        <li>Mang theo thẻ học sinh/CCCD để được vào phòng thi</li>
+        <li>Kết quả kiểm tra sẽ được công bố trong vòng 7 ngày sau kỳ thi</li>
+      </ul>
+      <p>Mọi thắc mắc về lịch thi, học sinh vui lòng liên hệ giáo viên chủ nhiệm hoặc phòng Đào tạo của nhà trường.</p>
+    `
+  },
+  4: {
+    id: 4,
+    title: 'Đêm Văn Nghệ Chào Mừng Ngày Nhà Giáo Việt Nam 20/11',
+    cat: 'Sự kiện',
+    catClass: 'purple',
+    date: '08/11/2024',
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1561489401-fc2876ced162?w=1000&q=80',
+    tags: ['Sự kiện', 'Văn nghệ', '20/11'],
+    lead: 'Đêm văn nghệ "Tri ân thầy cô" chào mừng Ngày Nhà giáo Việt Nam 20/11 diễn ra hoành tráng và xúc động, với sự tham gia biểu diễn của hơn 500 học sinh mang đến những tiết mục nghệ thuật đặc sắc.',
+    body: `
+      <h2>Một đêm đầy cảm xúc</h2>
+      <p>Tối ngày 19/11/2024, sân khấu chính của trường THPT C Kim Bảng rực sáng ánh đèn và tràn ngập giai điệu của những ca khúc tri ân thầy cô. Đêm văn nghệ "Tri ân thầy cô" năm nay được đầu tư công phu hơn những năm trước, với sân khấu được thiết kế hiện đại, âm thanh và ánh sáng chuyên nghiệp.</p>
+      <p>Hơn 500 học sinh đã được tuyển chọn qua vòng thử giọng và luyện tập trong suốt một tháng để chuẩn bị cho đêm biểu diễn đặc biệt này. Khán giả là thầy cô giáo, ban giám hiệu cùng hơn 150 khách mời là phụ huynh học sinh tiêu biểu.</p>
+      <h2>Các tiết mục nổi bật</h2>
+      <ul>
+        <li><strong>Màn múa mở màn "Bụi Phấn":</strong> 50 học sinh nữ với trang phục áo dài trắng tinh khôi</li>
+        <li><strong>Hòa tấu nhạc cụ:</strong> Ban nhạc học sinh với 8 thành viên chơi guitar, piano, violin</li>
+        <li><strong>Vũ điệu K-pop:</strong> Nhóm nhảy 15 học sinh được khán giả cổ vũ nồng nhiệt nhất</li>
+        <li><strong>Hát tốp ca:</strong> Các ca khúc về thầy cô và mái trường khiến nhiều người rơi nước mắt</li>
+        <li><strong>Kịch ngắn cảm động:</strong> Tái hiện câu chuyện học trò vượt khó nhờ sự dìu dắt của thầy cô</li>
+      </ul>
+      <h2>Trao tặng hoa và quà</h2>
+      <p>Kết thúc đêm văn nghệ, đại diện Ban cán sự lớp đã đại diện cho toàn thể học sinh trao tặng hoa tươi và thiệp viết tay đến tất cả thầy cô giáo nhà trường. Khoảnh khắc này là phần cảm động và ý nghĩa nhất của buổi tối, khép lại một sự kiện đáng nhớ trong năm học 2024–2025.</p>
+    `
+  },
+  5: {
+    id: 5,
+    title: 'Thông Báo Tuyển Sinh Lớp 10 Năm Học 2025–2026',
+    cat: 'Tuyển sinh',
+    catClass: 'red',
+    date: '01/11/2024',
+    img: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1000&q=80',
+    tags: ['Tuyển sinh', 'Lớp 10', '2025-2026'],
+    lead: 'Trường THPT C Kim Bảng trân trọng thông báo kế hoạch tuyển sinh lớp 10 năm học 2025–2026 với chỉ tiêu 480 học sinh. Nhà trường ưu tiên học sinh cư trú trên địa bàn huyện Kim Bảng, tỉnh Hà Nam.',
+    body: `
+      <h2>Chỉ tiêu và cơ cấu lớp</h2>
+      <p>Năm học 2025–2026, trường THPT C Kim Bảng dự kiến tuyển sinh <strong>480 học sinh</strong> vào 12 lớp 10, mỗi lớp tối đa 40 học sinh. Các lớp được phân chia theo ban:</p>
+      <ul>
+        <li><strong>Ban Tự nhiên (A, A1):</strong> 8 lớp – dành cho học sinh định hướng Khoa học tự nhiên</li>
+        <li><strong>Ban Xã hội (C, D):</strong> 4 lớp – dành cho học sinh định hướng Khoa học xã hội và Ngoại ngữ</li>
+      </ul>
+      <h2>Đối tượng và điều kiện</h2>
+      <ul>
+        <li>Học sinh tốt nghiệp THCS năm học 2024–2025</li>
+        <li>Ưu tiên học sinh cư trú trên địa bàn huyện Kim Bảng, Hà Nam</li>
+        <li>Đủ điều kiện theo quy định của Sở GD&ĐT Hà Nam</li>
+      </ul>
+      <h2>Lịch tuyển sinh dự kiến</h2>
+      <ul>
+        <li><strong>Tháng 5/2025:</strong> Công bố điều kiện và hồ sơ đăng ký</li>
+        <li><strong>01/6–10/6/2025:</strong> Nhận hồ sơ đăng ký dự thi</li>
+        <li><strong>20–21/6/2025:</strong> Kỳ thi tuyển sinh vào lớp 10</li>
+        <li><strong>01/7/2025:</strong> Công bố kết quả thi và danh sách trúng tuyển</li>
+      </ul>
+      <h2>Liên hệ và thông tin thêm</h2>
+      <p>Phụ huynh và học sinh có thể liên hệ phòng tuyển sinh tại trường trong giờ hành chính, hoặc gọi điện tới số (0226) 386 xxxx để được tư vấn chi tiết. Thông tin tuyển sinh cũng sẽ được đăng tải đầy đủ trên website chính thức của nhà trường.</p>
+    `
+  },
+  6: {
+    id: 6,
+    title: 'Hội Thao Truyền Thống Lần Thứ 30 Diễn Ra Thành Công Rực Rỡ',
+    cat: 'Ngoại khóa',
+    catClass: 'green',
+    date: '28/10/2024',
+    img: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1200&q=85',
+    img2: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?w=1000&q=80',
+    tags: ['Ngoại khóa', 'Hội thao', 'Thể thao'],
+    lead: 'Hội thao truyền thống lần thứ 30 của trường THPT C Kim Bảng đã kết thúc trong không khí sôi nổi, đầy cảm xúc và tiếng reo hò. Đây là dấu mốc quan trọng đánh dấu 30 năm truyền thống thể thao của nhà trường.',
+    body: `
+      <h2>Dấu mốc 30 năm</h2>
+      <p>Hội thao truyền thống lần thứ 30 diễn ra từ ngày 25 đến 27/10/2024 tại sân vận động trường và các khu vực thi đấu lân cận. Đây là sự kiện thể thao lớn nhất trong năm học của trường, quy tụ toàn bộ học sinh 3 khối lớp tham gia.</p>
+      <p>Năm nay đánh dấu cột mốc đặc biệt – kỳ hội thao lần thứ 30 – được tổ chức hoành tráng hơn với nhiều môn thi đấu phong phú và phần thưởng hấp dẫn hơn những năm trước.</p>
+      <h2>Các môn thi đấu</h2>
+      <ul>
+        <li><strong>Thể thao tập thể:</strong> Bóng đá nam, bóng chuyền nam/nữ, cầu lông đôi nam nữ</li>
+        <li><strong>Thể thao cá nhân:</strong> Điền kinh (100m, 400m, 1500m), cử tạ</li>
+        <li><strong>Trò chơi vận động:</strong> Kéo co, nhảy dây tập thể, chạy tiếp sức</li>
+        <li><strong>Thể thao mới:</strong> Năm nay lần đầu tiên đưa vào thi đấu môn Cờ vua và Dance Sport</li>
+      </ul>
+      <h2>Kết quả nổi bật</h2>
+      <p>Lớp 12A1 giành chức vô địch toàn đoàn với số điểm áp đảo, tiếp theo là 11A3 và 10A2. Riêng môn bóng đá nam thu hút sự quan tâm lớn nhất với 12 đội tham dự và trận chung kết kịch tính giữa đội 12A1 và 11A3, kết thúc với tỉ số 2-1.</p>
+      <p>Đặc biệt, trong ngày bế mạc, ban tổ chức đã trao giải Vận động viên xuất sắc nhất cho em Trần Văn Dũng (12A1) với thành tích phá kỷ lục nhà trường môn chạy 100m.</p>
+    `
+  }
+};
+
+// ─── GET ARTICLE ID FROM URL ───
+function getArticleId() {
+  const params = new URLSearchParams(window.location.search);
+  return parseInt(params.get('id')) || 1;
+}
+
+// ─── RENDER ARTICLE ───
+function renderArticle(id) {
+  const art = articles[id];
+  if (!art) {
+    document.getElementById('articleWrap').innerHTML = '<div style="padding:60px;text-align:center;color:var(--gray-400)">Không tìm thấy bài viết.</div>';
+    return;
+  }
+
+  // Update page title
+  document.title = art.title + ' – Trường THPT C Kim Bảng';
+
+  // Update breadcrumb
+  document.getElementById('heroBreadcrumbTitle').textContent = art.title;
+
+
+  // Build article HTML
+  const html = `
+    <img src="${art.img}" alt="${art.title}" class="article-hero-img">
+    <div class="article-content">
+      <div class="article-header">
+        <div class="article-header-meta">
+          <span class="article-tag ${art.catClass}">${art.cat}</span>
+          <span class="article-header-date">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${art.date}
+          </span>
+          <span class="article-header-date">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Phòng Truyền thông
+          </span>
+        </div>
+        <h1 class="article-title">${art.title}</h1>
+      </div>
+      <p class="article-lead">${art.lead}</p>
+      <div class="article-body">
+        ${art.body}
+        <img src="${art.img2}" alt="Hình ảnh bài viết" class="article-inline-img">
+        <p class="img-caption">Hình ảnh minh họa sự kiện – Trường THPT C Kim Bảng</p>
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById('articleWrap').innerHTML = html;
+
+  // Related news (other articles)
+  const relatedHtml = Object.values(articles)
+    .filter(a => a.id !== id)
+    .slice(0, 4)
+    .map(a => `
+      <a class="related-item" href="chitiet.html?id=${a.id}">
+        <img src="${a.img}" alt="${a.title}" class="related-img">
+        <div class="related-text">
+          <h5>${a.title}</h5>
+          <span>📅 ${a.date}</span>
+        </div>
+      </a>
+    `).join('');
+
+  document.getElementById('relatedList').innerHTML = relatedHtml;
+}
+
+// ─── COPY LINK ───
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  });
+}
+
+// ─── READING PROGRESS ───
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('readingProgress').style.width = progress + '%';
+
+  // Show scroll-to-top button
+  const scrollTopBtn = document.getElementById('scrollTop');
+  if (scrollTop > 400) scrollTopBtn.classList.add('visible');
+  else scrollTopBtn.classList.remove('visible');
+
+  // Sticky header shadow
+  const header = document.querySelector('header');
+  if (scrollTop > 10) header.style.boxShadow = '0 4px 32px rgba(10,36,99,0.35)';
+  else header.style.boxShadow = '0 2px 24px rgba(10,36,99,0.25)';
+});
+
+document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ─── MOBILE MENU ───
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+const closeMenu = document.getElementById('closeMenu');
+menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+// ─── FADE-IN OBSERVER ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded', () => {
+  const id = getArticleId();
+  renderArticle(id);
+
+  // Re-observe after render
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }, 100);
+});
+</script>
+</body>
+</html>

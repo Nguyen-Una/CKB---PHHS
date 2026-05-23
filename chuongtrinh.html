@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương Trình Đào Tạo – Trường THPT C Kim Bảng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-deep:   #0a2463;
+  --blue-mid:    #1565c0;
+  --blue-bright: #1e88e5;
+  --blue-light:  #e3f2fd;
+  --gold:        #f4c430;
+  --gold-light:  #fff9e6;
+  --gold-dark:   #c9a000;
+  --white:       #ffffff;
+  --gray-soft:   #f7f9fc;
+  --gray-text:   #556070;
+  --gray-border: #dde3ed;
+  --green:       #1b5e20;
+  --green-mid:   #2e7d32;
+  --green-bright:#43a047;
+  --purple:      #4a148c;
+  --purple-mid:  #7b1fa2;
+  --orange:      #e65100;
+  --orange-mid:  #f57c00;
+  --shadow-sm:  0 2px 12px rgba(10,36,99,.07);
+  --shadow-md:  0 8px 32px rgba(10,36,99,.13);
+  --shadow-lg:  0 20px 60px rgba(10,36,99,.18);
+  --radius:     18px;
+  --radius-sm:  10px;
+  --tr:         .35s cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',sans-serif;color:#1a2340;background:var(--white);overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--blue-light)}
+::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:3px}
+
+/* ─── HEADER ─────────────────────────────── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,36,99,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(10,36,99,0.25);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(10,36,99,0.18);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #ffffff; }
+  .logo-sub { display: none; }
+
+  nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+
+  nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: #ffffff; background: rgba(255,255,255,0.1); }
+  nav a.active { color: #f4b942; background: rgba(244,185,66,0.15); }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .header-search:focus-within {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(244,185,66,0.5);
+  }
+
+  .header-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 13px;
+    width: 140px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+
+  .header-search input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .search-btn:hover { color: #f4b942; }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    margin-left: auto;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px; height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ─── NOTIFICATION BAR ─── */
+  .notif-bar {
+    background: linear-gradient(135deg, #f4b942, #f59e0b);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .notif-bar .label {
+    background: var(--blue-deep);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+
+  .ticker-wrap { flex: 1; overflow: hidden; }
+
+  .ticker {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-deep);
+  }
+
+  .ticker span::before { content: '• '; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+/* ─── HERO BANNER (overlay matched to lienhe.html) ─────────────────────────── */
+#hero-banner{
+  margin-top:72px;
+  position:relative;
+  /* Use the same gradient-overlay + image shorthand as trang "Liên hệ" */
+  background: linear-gradient(180deg, rgba(11,31,74,0.72), rgba(11,31,74,0.72)), url('chuongtrinh.jpg') center 95%/cover no-repeat;
+  min-height:170px; display:flex; align-items:flex-end; overflow:hidden;
+}
+/* hide separate background/mesh/deco layers so overlay matches exactly */
+.hero-bg{ display:none; }
+.hero-mesh{ display:none; }
+.hero-deco{ display:none; }
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(244,196,48,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,196,48,.08) 1px, transparent 1px);
+  background-size:80px 80px;
+}
+.hero-grid::before{
+  content: '';
+  position:absolute;inset:0;
+  background: linear-gradient(135deg, rgba(21,53,110,.8) 0%, transparent 60%);
+}
+
+.hero-inner{
+  position:relative;z-index:2;max-width:100%;margin:0 auto;
+  padding:20px 40px;width:100%;
+}
+.breadcrumb{
+  display:flex;align-items:center;gap:8px;margin-bottom:20px;
+  font-size:13px;color:rgba(255,255,255,.65);
+}
+.breadcrumb a{color:rgba(255,255,255,.65);text-decoration:none;transition:color var(--tr)}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb .sep{color:rgba(255,255,255,.35);font-size:11px}
+.breadcrumb .cur{color:var(--gold);font-weight:600}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(244,196,48,.18);border:1px solid rgba(244,196,48,.5);
+  color:var(--gold);border-radius:50px;padding:9px 18px;
+  font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  margin-bottom:18px;animation:fadeUp .6s ease both;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,5.5vw,64px);font-weight:800;color:white;
+  line-height:1.12;max-width:780px;margin-bottom:18px;
+  animation:fadeUp .7s .08s ease both;
+}
+.hero-title .gold{color:#e8d48a}
+.hero-sub{
+  font-size:clamp(14px,1.5vw,17px);color:rgba(255,255,255,.82);
+  max-width:520px;line-height:1.75;animation:fadeUp .7s .16s ease both;
+}
+.hero-chips{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
+  animation:fadeUp .7s .24s ease both;
+}
+.hero-chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);
+  color:white;border-radius:50px;padding:7px 16px;
+  font-size:13px;font-weight:600;backdrop-filter:blur(6px);
+  cursor:pointer;transition:all var(--tr);text-decoration:none;
+}
+.hero-chip:hover,.hero-chip.active{background:var(--gold);color:var(--blue-deep);border-color:var(--gold)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── SHARED ─────────────────────────────── */
+.container{max-width:100%;margin:0 auto}
+section{padding:88px 40px}
+.section-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--blue-mid);font-weight:700;font-size:12.5px;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;
+}
+.section-tag::before{content:'';width:26px;height:3px;background:linear-gradient(90deg,var(--blue-bright),var(--gold));border-radius:2px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,42px);font-weight:700;color:var(--blue-deep);line-height:1.2;margin-bottom:14px}
+.section-desc{font-size:15.5px;color:var(--gray-text);line-height:1.75;max-width:600px}
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── OVERVIEW STATS BAR ─────────────────── */
+#overview-bar{
+  background:var(--blue-deep);padding:0 24px;
+}
+.overview-inner{
+  max-width:100%;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.ov-item{
+  padding:26px 18px;text-align:center;position:relative;
+  transition:background var(--tr);
+}
+.ov-item:not(:last-child)::after{
+  content:'';position:absolute;right:0;top:20%;bottom:20%;
+  width:1px;background:rgba(255,255,255,.15);
+}
+.ov-item:hover{background:rgba(255,255,255,.07)}
+.ov-num{
+  font-family:'Playfair Display',serif;font-size:34px;font-weight:800;
+  color:var(--gold);line-height:1;
+}
+.ov-label{font-size:12.5px;color:rgba(255,255,255,.68);font-weight:500;margin-top:5px}
+
+/* ─── PROGRAM TABS ────────────────────────── */
+#programs-section{background:white;padding-top:72px;padding-bottom:60px}
+.tabs-bar{
+  display:flex;gap:8px;flex-wrap:wrap;margin:40px 0 48px;
+  background:white;padding:8px;border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);
+}
+.tab-btn{
+  flex:1;min-width:130px;padding:13px 20px;border-radius:12px;
+  border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;
+  color:var(--gray-text);background:transparent;
+  transition:all var(--tr);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.tab-btn:hover{background:var(--blue-light);color:var(--blue-mid)}
+.tab-btn.active{color:white;box-shadow:var(--shadow-sm)}
+.tab-btn[data-tab="tn"].active{background:linear-gradient(135deg,var(--blue-deep),var(--blue-bright))}
+.tab-btn[data-tab="xh"].active{background:linear-gradient(135deg,var(--green),var(--green-bright))}
+
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Program Detail Layout */
+.prog-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:64px;
+}
+.prog-visual{
+  border-radius:var(--radius);overflow:hidden;position:relative;
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  font-size:90px;box-shadow:var(--shadow-lg);
+}
+.prog-visual .prog-label{
+  position:absolute;bottom:20px;left:20px;right:20px;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
+  color:white;border-radius:10px;padding:14px 18px;
+  font-size:13.5px;line-height:1.6;
+}
+.prog-visual .prog-label strong{display:block;font-size:16px;margin-bottom:4px}
+
+.tn-grad{background:linear-gradient(135deg,#0a2463 0%,#1565c0 55%,#1e88e5 100%)}
+.xh-grad{background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 55%,#66bb6a 100%)}
+
+
+.prog-info{}
+.prog-tag-line{
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:50px;padding:7px 16px;font-size:12.5px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;margin-bottom:16px;
+}
+.tn-tag{background:#e3f2fd;color:var(--blue-deep)}
+.xh-tag{background:#e8f5e9;color:var(--green)}
+
+.prog-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,40px);font-weight:800;color:var(--blue-deep);line-height:1.15;margin-bottom:16px}
+.prog-desc{font-size:15px;color:var(--gray-text);line-height:1.8;margin-bottom:24px}
+
+.prog-highlights{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.prog-highlight{
+  display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:white;border-radius:10px;border:1px solid var(--gray-border);
+  font-size:14px;color:#1a2340;line-height:1.5;
+  transition:all var(--tr);
+}
+.prog-highlight:hover{border-color:var(--blue-bright);box-shadow:var(--shadow-sm)}
+.prog-highlight .hi-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.prog-highlight strong{font-weight:700;display:block;font-size:13.5px;margin-bottom:2px}
+
+.prog-cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn-main{
+  padding:13px 28px;border-radius:50px;font-size:14.5px;font-weight:700;
+  border:none;cursor:pointer;font-family:inherit;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all var(--tr);
+}
+.btn-main:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.tn-btn{background:linear-gradient(135deg,var(--blue-deep),var(--blue-bright));color:white;box-shadow:0 6px 20px rgba(21,101,192,.38)}
+.xh-btn{background:linear-gradient(135deg,var(--green),var(--green-bright));color:white;box-shadow:0 6px 20px rgba(46,125,50,.38)}
+.btn-ghost{
+  padding:12px 24px;border-radius:50px;font-size:14px;font-weight:600;
+  border:1.5px solid var(--gray-border);color:var(--gray-text);
+  background:white;cursor:pointer;font-family:inherit;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all var(--tr);
+}
+.btn-ghost:hover{border-color:var(--blue-mid);color:var(--blue-mid)}
+
+/* Subjects Grid */
+.subjects-section{margin-top:0}
+.subjects-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--blue-deep);margin-bottom:28px}
+.teachers-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--blue-deep);margin-top:-8px;margin-bottom:16px}
+.subjects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.subject-card{
+  background:white;border-radius:var(--radius-sm);padding:20px;
+  border:1px solid var(--gray-border);box-shadow:var(--shadow-sm);
+  transition:all var(--tr);
+}
+.subject-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:transparent}
+.subj-icon{font-size:32px;margin-bottom:10px}
+.subj-name{font-size:15px;font-weight:700;color:var(--blue-deep);margin-bottom:6px}
+.subj-info{font-size:13px;color:var(--gray-text);line-height:1.6}
+.subj-badge{
+  display:inline-block;margin-top:8px;
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;
+}
+.badge-tn{background:var(--blue-light);color:var(--blue-mid)}
+.badge-xh{background:#e8f5e9;color:var(--green)}
+
+/* Schedule / Career */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
+.info-panel{background:white;border-radius:var(--radius);padding:32px;border:1px solid var(--gray-border);box-shadow:var(--shadow-sm)}
+.info-panel h3{font-size:17px;font-weight:700;color:var(--blue-deep);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.schedule-list,.career-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.schedule-list li,.career-list li{
+  display:flex;align-items:flex-start;gap:12px;padding:11px 14px;
+  border-radius:8px;background:var(--gray-soft);font-size:14px;color:#1a2340;
+  line-height:1.5;
+}
+.schedule-list li .day{font-weight:700;min-width:80px;color:var(--blue-mid);flex-shrink:0}
+.career-list li::before{content:'→';flex-shrink:0;color:var(--gold);font-weight:700;font-size:16px;margin-top:1px}
+.career-list li{background:var(--gold-light)}
+
+/* ─── COMPARISON TABLE ────────────────────── */
+#compare{background:white}
+.compare-table-wrap{overflow-x:auto;margin-top:48px;border-radius:var(--radius);box-shadow:var(--shadow-md);border:1px solid var(--gray-border)}
+table{width:100%;border-collapse:collapse;min-width:700px}
+thead tr{background:var(--blue-deep)}
+th{padding:18px 20px;color:white;font-size:14px;font-weight:700;text-align:left}
+th:first-child{border-radius:var(--radius) 0 0 0}
+th:last-child{border-radius:0 var(--radius) 0 0}
+th.tn-head{background:rgba(30,136,229,.85)}
+th.xh-head{background:rgba(46,125,50,.85)}
+th.sn-head{background:rgba(123,31,162,.85)}
+th.cl-head{background:rgba(230,81,0,.85)}
+tbody tr{border-bottom:1px solid var(--gray-border);transition:background var(--tr)}
+tbody tr:hover{background:var(--blue-light)}
+tbody tr:last-child{border-bottom:none}
+td{padding:15px 20px;font-size:14px;color:#1a2340;line-height:1.5}
+td:first-child{font-weight:700;color:var(--blue-deep);background:var(--gray-soft)}
+.check{color:#2e7d32;font-size:18px}
+.cross{color:#c62828;font-size:16px}
+.partial{color:var(--orange-mid);font-size:14px;font-weight:700}
+
+/* ─── TEACHERS ────────────────────────────── */
+#teachers{background:var(--gray-soft)}
+.teachers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:8px;margin-bottom:40px}
+.teacher-card{
+  background:white;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);
+  transition:all var(--tr);text-align:center;
+}
+.teacher-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent}
+.teacher-avatar{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:64px;position:relative;
+}
+.teacher-card:nth-child(1) .teacher-avatar{background:linear-gradient(135deg,#0a2463,#1565c0)}
+.teacher-card:nth-child(2) .teacher-avatar{background:linear-gradient(135deg,#1b5e20,#43a047)}
+.teacher-card:nth-child(3) .teacher-avatar{background:linear-gradient(135deg,#4a148c,#9c27b0)}
+.teacher-card:nth-child(4) .teacher-avatar{background:linear-gradient(135deg,#bf360c,#e64a19)}
+.teacher-card:nth-child(5) .teacher-avatar{background:linear-gradient(135deg,#006064,#26c6da)}
+.teacher-card:nth-child(6) .teacher-avatar{background:linear-gradient(135deg,#1a237e,#5c6bc0)}
+.teacher-card:nth-child(7) .teacher-avatar{background:linear-gradient(135deg,#880e4f,#e91e63)}
+.teacher-card:nth-child(8) .teacher-avatar{background:linear-gradient(135deg,#33691e,#9ccc65)}
+.teacher-award{
+  position:absolute;bottom:10px;right:10px;
+  background:var(--gold);color:var(--blue-deep);
+  border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;
+}
+.teacher-body{padding:18px 16px}
+.teacher-name{font-size:15px;font-weight:700;color:var(--blue-deep);margin-bottom:4px}
+.teacher-role{font-size:12.5px;color:var(--gray-text);margin-bottom:10px}
+.teacher-tags{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.teacher-tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--blue-light);color:var(--blue-mid)}
+
+/* ─── ACTIVITIES ──────────────────────────── */
+#activities{background:white}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.activity-card{
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);
+  transition:all var(--tr);
+}
+.activity-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.activity-img{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:64px;position:relative;
+}
+.activity-card:nth-child(1) .activity-img{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+.activity-card:nth-child(2) .activity-img{background:linear-gradient(135deg,#2e7d32,#81c784)}
+.activity-card:nth-child(3) .activity-img{background:linear-gradient(135deg,#e65100,#ffb74d)}
+.activity-card:nth-child(4) .activity-img{background:linear-gradient(135deg,#4a148c,#ce93d8)}
+.activity-card:nth-child(5) .activity-img{background:linear-gradient(135deg,#006064,#80deea)}
+.activity-card:nth-child(6) .activity-img{background:linear-gradient(135deg,#880e4f,#f48fb1)}
+.activity-cat{
+  position:absolute;top:14px;left:14px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  color:var(--blue-deep);border-radius:8px;padding:5px 12px;
+  font-size:11.5px;font-weight:700;
+}
+.activity-body{padding:22px;background:white}
+.activity-title{font-size:16px;font-weight:700;color:var(--blue-deep);margin-bottom:8px;line-height:1.4}
+.activity-desc{font-size:13.5px;color:var(--gray-text);line-height:1.65}
+
+/* ─── ACHIEVEMENTS ────────────────────────── */
+#achievements{
+  background:linear-gradient(135deg,var(--blue-deep) 0%,#1565c0 60%,#1e3a8a 100%);
+  position:relative;overflow:hidden;
+}
+#achievements::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:36px 36px;
+}
+#achievements::after{
+  content:'';position:absolute;bottom:-120px;left:-120px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,196,48,.12),transparent 60%);
+}
+#achievements .section-tag{color:var(--gold)}
+#achievements .section-tag::before{background:var(--gold)}
+#achievements .section-title{color:white}
+
+.achv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;position:relative;z-index:1}
+.achv-card{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius);padding:28px 22px;
+  backdrop-filter:blur(10px);transition:all var(--tr);
+  text-align:center;
+}
+.achv-card:hover{background:rgba(255,255,255,.16);transform:translateY(-6px);border-color:rgba(244,196,48,.4)}
+.achv-icon{font-size:44px;margin-bottom:14px}
+.achv-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:800;color:var(--gold);line-height:1}
+.achv-label{font-size:13.5px;color:rgba(255,255,255,.78);font-weight:500;margin-top:8px;line-height:1.5}
+
+.achv-list-wrap{margin-top:48px;position:relative;z-index:1}
+.achv-list-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;margin-bottom:24px}
+.achv-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.achv-item{
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;padding:16px 18px;
+  display:flex;align-items:flex-start;gap:12px;
+  transition:all var(--tr);
+}
+.achv-item:hover{background:rgba(255,255,255,.16);border-color:rgba(244,196,48,.3)}
+.achv-item .medal{font-size:22px;flex-shrink:0}
+.achv-item-text{font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.55}
+.achv-item-text strong{color:var(--gold);display:block;font-size:14px;margin-bottom:3px}
+
+/* ─── FAQ ─────────────────────────────────── */
+#faq{background:var(--gray-soft);padding-top:16px;padding-bottom:48px}
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:12px;max-width:860px;margin-left:auto;margin-right:auto}
+.faq-item{
+  background:white;border-radius:var(--radius-sm);
+  border:1px solid var(--gray-border);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:border-color var(--tr);
+}
+.faq-item.open{border-color:var(--blue-bright)}
+.faq-q{
+  padding:18px 22px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-weight:700;font-size:15px;color:var(--blue-deep);
+  user-select:none;
+}
+.faq-q:hover{background:var(--blue-light)}
+.faq-icon{width:30px;height:30px;border-radius:8px;background:var(--blue-light);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:18px;transition:transform var(--tr);}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--blue-mid);color:white}
+.faq-a{
+  padding:0 22px;max-height:0;overflow:hidden;
+  transition:max-height .4s ease,padding .4s ease;
+  font-size:14.5px;color:var(--gray-text);line-height:1.75;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px}
+
+/* ─── CTA SECTION ─────────────────────────── */
+#cta-final{
+  background:var(--gold-light);
+  border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);
+  text-align:center;padding:72px 24px;
+}
+#cta-final .section-title{color:var(--blue-deep);font-size:clamp(26px,3vw,40px)}
+#cta-final .section-desc{color:var(--gray-text);margin:0 auto 36px;max-width:580px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-cta-gold{
+  padding:16px 36px;border-radius:50px;background:var(--gold);color:var(--blue-deep);
+  font-size:15.5px;font-weight:800;border:none;cursor:pointer;font-family:inherit;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+  box-shadow:0 6px 24px rgba(244,196,48,.45);transition:all var(--tr);
+}
+.btn-cta-gold:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(244,196,48,.55);background:#ffd040}
+.btn-cta-outline{
+  padding:15px 32px;border-radius:50px;background:transparent;
+  color:var(--blue-deep);border:2px solid var(--blue-mid);
+  font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:all var(--tr);
+}
+.btn-cta-outline:hover{background:var(--blue-mid);color:white;transform:translateY(-3px)}
+
+/* ─── FOOTER ──────────────────────────────── */
+footer{background:#0b1f4a;color:rgba(255,255,255,0.8)}
+.footer-top{max-width:1280px;margin:0 auto;padding:60px 24px 40px;display:grid;grid-template-columns:2fr 1fr 1.3fr 1.5fr;gap:48px}
+.footer-brand .logo{margin-bottom:16px}
+.footer-brand p{font-size:13px;line-height:1.8;color:rgba(255,255,255,0.55)}
+.footer-socials{display:flex;gap:10px;margin-top:20px}
+.social-icon{width:38px;height:38px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;font-size:16px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.social-icon:hover{background:#c9a84c;border-color:#c9a84c;color:#0b1f4a;transform:translateY(-3px)}
+.footer-col h4{font-family:'Playfair Display',serif;font-size:16px;color:white;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid rgba(244,185,66,0.4)}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;gap:8px}
+.footer-col ul li a::before{content:'›';color:#c9a84c;font-size:16px;line-height:1}
+.footer-col ul li a:hover{color:#c9a84c;padding-left:4px}
+.footer-contact-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.contact-icon{width:32px;height:32px;background:rgba(244,185,66,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#c9a84c}
+.footer-contact-item span{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding:20px 24px}
+.footer-bottom-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35)}
+
+/* ─── FAB ─────────────────────────────────── */
+.fab-group{position:fixed;bottom:26px;right:26px;z-index:900;display:flex;flex-direction:column;gap:11px;align-items:flex-end}
+.fab{width:50px;height:50px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:21px;text-decoration:none;cursor:pointer;box-shadow:var(--shadow-md);transition:all var(--tr);border:none}
+.fab:hover{transform:scale(1.12) translateY(-2px)}
+.fab.top{background:var(--blue-deep);color:white}
+.fab.chat{background:#0068FF;color:white}
+.fab.phone{background:#25D366;color:white}
+
+/* ─── MOBILE NAV ──────────────────────────── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,36,99,0.98);
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-nav a:hover { color: #f4b942; background: rgba(255,255,255,0.08); }
+  .mobile-nav a.active { color: #f4b942; }
+
+  .mobile-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media(max-width:1100px){
+  .prog-hero{grid-template-columns:1fr;gap:32px}
+  .prog-visual{aspect-ratio:16/7}
+  .subjects-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .teachers-grid{grid-template-columns:repeat(2,1fr);margin-bottom:32px}
+  .teachers-grid{margin-top:6px}
+  .achv-grid{grid-template-columns:repeat(2,1fr)}
+  .achv-list{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .overview-inner{grid-template-columns:repeat(2,1fr)}
+  .ov-item:nth-child(2)::after{display:none}
+}
+@media(max-width:900px){
+  nav,.header-search{display:none}
+  .menu-toggle{display:flex}
+  .activities-grid{grid-template-columns:repeat(2,1fr)}
+  section{padding:60px 20px}
+}
+@media(max-width:640px){
+  .tabs-bar{flex-direction:column}
+  .tab-btn{min-width:unset}
+  .subjects-grid{grid-template-columns:1fr}
+  .teachers-grid{grid-template-columns:1fr;margin-bottom:24px;margin-top:6px}
+  .activities-grid{grid-template-columns:1fr}
+  .achv-grid{grid-template-columns:1fr}
+  .achv-list{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:center}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+  .prog-cta-row{flex-direction:column}
+  .overview-inner{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar">
+  <span class="label">🔔 Thông báo</span>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="trangchu.html" class="logo">
+      <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+      <div class="logo-text">
+        <span class="logo-name">THPT C Kim Bảng</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="trangchu.html">Trang chủ</a>
+      <a href="chuongtrinh.html" class="active">Chương trình đào tạo</a>
+      <a href="tuyensinh.html">Tuyển sinh</a>
+      <a href="tintuc.html">Tin tức</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="closeMenu">✕</button>
+  <a href="trangchu.html">🏠 Trang chủ</a>
+  <a href="chuongtrinh.html" class="active">📚 Chương trình đào tạo</a>
+  <a href="tuyensinh.html">📝 Tuyển sinh</a>
+  <a href="tintuc.html">📰 Tin tức</a>
+  <a href="lienhe.html">📞 Liên hệ</a>
+</div>
+
+<!-- HERO BANNER -->
+<section id="hero-banner">
+  <div class="hero-bg"></div>
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="trangchu.html">Trang chủ</a>
+      <span class="sep">›</span>
+      <span class="cur">Chương trình đào tạo</span>
+    </div>
+    <div class="hero-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <h1 class="hero-title">Chương trình<br><span class="gold">Đào Tạo Chất Lượng Cao</span></h1>
+    <p class="hero-sub">Đa dạng lộ trình học tập, phù hợp với từng năng lực và định hướng tương lai. Mỗi chương trình được thiết kế bài bản, chuẩn quốc gia, hướng đến đại học và hội nhập toàn cầu.</p>
+    <div class="hero-chips">
+      <a href="#programs-section" data-scroll="tn" class="hero-chip active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8L5.5 16A4 4 0 0 0 9.18 22h5.64a4 4 0 0 0 3.68-5.48L15 11V3"/><line x1="6" y1="14" x2="18" y2="14"/></svg> Ban Tự Nhiên</a>
+      <a href="#programs-section" data-scroll="xh" class="hero-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Ban Xã Hội</a>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW BAR -->
+
+<!-- PROGRAMS SECTION WITH TABS -->
+<section id="programs-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto">
+      <div class="section-tag">Khám phá chương trình</div>
+      <h2 class="section-title">Lựa chọn lộ trình học<br>phù hợp với bạn</h2>
+      <p class="section-desc" style="margin:0 auto">Mỗi chương trình được xây dựng bởi đội ngũ giáo viên giàu kinh nghiệm, đáp ứng chuẩn Bộ GD&ĐT và định hướng nghề nghiệp rõ ràng.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-bar reveal">
+      <button class="tab-btn active" data-tab="tn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8L5.5 16A4 4 0 0 0 9.18 22h5.64a4 4 0 0 0 3.68-5.48L15 11V3"/><line x1="6" y1="14" x2="18" y2="14"/></svg> Ban Tự Nhiên</button>
+      <button class="tab-btn" data-tab="xh"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Ban Xã Hội</button>
+    </div>
+
+    <!-- TAB: TỰ NHIÊN -->
+    <div class="tab-content active" id="tab-tn">
+      <div class="prog-hero reveal">
+        <div class="prog-visual tn-grad" style="background: url('bantunhien.jpg') center 95%/cover no-repeat;">
+          <div class="prog-label">
+            <strong>Ban Tự Nhiên (Toán – Lý – Hóa – Sinh)</strong>
+          </div>
+        </div>
+        <div class="prog-info">
+          <div class="prog-tag-line tn-tag">Ban Tự Nhiên</div>
+          <h2 class="prog-title">Khoa học Tự Nhiên &<br>Công Nghệ Hiện Đại</h2>
+          <p class="prog-desc"></p>
+          <div class="prog-highlights">
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><rect x="6" y="18" width="12" height="4"/></svg></span><div><strong>Thành tích nổi bật</strong>Năm 2024: 6 giải HSG tỉnh môn Toán, Lý, Hóa – 2 học sinh vào vòng quốc gia</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8L5.5 16A4 4 0 0 0 9.18 22h5.64a4 4 0 0 0 3.68-5.48L15 11V3"/><line x1="6" y1="14" x2="18" y2="14"/></svg></span><div><strong>Phòng thực hành hiện đại</strong>3 phòng thí nghiệm Vật lý, Hóa học, Sinh học được trang bị đầy đủ thiết bị</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div><strong>Tỷ lệ đỗ đại học</strong>95% học sinh Ban Tự Nhiên đỗ vào các trường đại học kỹ thuật, y dược hàng đầu</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3L3 17l4 4L21 7z"/><path d="m9 9 1.5 1.5M12 12l1.5 1.5M6 6l1.5 1.5"/></svg></span><div><strong>Tăng cường Toán – Lý</strong>Thêm 4 tiết/tuần môn Toán và Lý so với chương trình chuẩn</div></div>
+          </div>
+          
+        </div>
+      </div>
+      <h3 class="teachers-title reveal">Giáo viên tiêu biểu</h3>
+      <div class="teachers-grid reveal">
+        <div class="teacher-card reveal">
+          <div class="teacher-avatar"><img src="lananh.jpg" alt="ThS. Nguyễn Thị Lan Anh" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">GV Tổ Toán</div></div>
+          <div class="teacher-body">
+            <div class="teacher-name">ThS. Nguyễn Thị Lan Anh</div>
+            <div class="teacher-role">Tổ trưởng Tổ Toán – Tin</div>
+            <div class="teacher-tags"><span class="teacher-tag">Toán nâng cao</span><span class="teacher-tag">HSG tỉnh</span></div>
+          </div>
+        </div>
+        <div class="teacher-card reveal">
+          <div class="teacher-avatar"><img src="vanminh.jpg" alt="ThS. Trần Văn Minh" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">ThS. Vật lý</div></div>
+          <div class="teacher-body">
+            <div class="teacher-name">ThS. Trần Văn Minh</div>
+            <div class="teacher-role">Giáo viên Vật lý chuyên sâu</div>
+            <div class="teacher-tags"><span class="teacher-tag">Vật lý đại cương</span><span class="teacher-tag">STEM</span></div>
+          </div>
+        </div>
+        <div class="teacher-card reveal">
+          <div class="teacher-avatar"><img src="ducthanh.jpeg" alt="TS. Lê Đức Thành" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">TS. Hóa</div></div>
+          <div class="teacher-body">
+            <div class="teacher-name">TS. Lê Đức Thành</div>
+            <div class="teacher-role">Giáo viên Hóa học</div>
+            <div class="teacher-tags"><span class="teacher-tag">Hóa nâng cao</span><span class="teacher-tag">HSG QG</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subjects-title reveal">Các môn học trong chương trình</h3>
+      <div class="subjects-grid reveal">
+        <div class="subject-card"><div class="subj-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3L3 17l4 4L21 7z"/><path d="m9 9 1.5 1.5M12 12l1.5 1.5M6 6l1.5 1.5"/></svg></div><div class="subj-name">Toán học</div><div class="subj-info">Đại số, Giải tích, Hình học không gian – 5 tiết/tuần</div><span class="subj-badge badge-tn">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="subj-name">Vật lý</div><div class="subj-info">Cơ học, Điện từ, Quang học, Vật lý hiện đại</div><span class="subj-badge badge-tn">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8L5.5 16A4 4 0 0 0 9.18 22h5.64a4 4 0 0 0 3.68-5.48L15 11V3"/><line x1="6" y1="14" x2="18" y2="14"/></svg></div><div class="subj-name">Hóa học</div><div class="subj-info">Hóa đại cương, Hóa hữu cơ – thực hành phòng lab</div><span class="subj-badge badge-tn">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c1.25-1.25 2.5-2.5 3.5-4"/><path d="M7.47 16.97C5.7 15.2 5 12 5 9c0-4.42 4.5-7 7-7s7 2.58 7 7c0 3-.7 6.2-2.47 7.97z"/></svg></div><div class="subj-name">Sinh học</div><div class="subj-info">Di truyền học, Sinh thái, Tế bào học và ứng dụng</div><span class="subj-badge badge-tn">Tự chọn · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="subj-name">Tin học</div><div class="subj-info">Lập trình Python, Thuật toán cơ bản – 2 tiết/tuần</div><span class="subj-badge badge-tn">Tự chọn</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="subj-name">Tiếng Anh</div><div class="subj-info">Chương trình chuẩn quốc gia, thi IELTS hỗ trợ</div><span class="subj-badge badge-tn">Bắt buộc</span></div>
+      </div>
+    </div>
+
+    <!-- TAB: XÃ HỘI -->
+    <div class="tab-content" id="tab-xh">
+      <div class="prog-hero reveal">
+        <div class="prog-visual xh-grad" style="background: url('banxahoi.jpg') center 95%/cover no-repeat;">
+            <div class="prog-label">
+              <strong>Ban Xã Hội (Văn – Sử – Địa – GDCD)</strong>
+            </div>
+        </div>
+        <div class="prog-info">
+          <div class="prog-tag-line xh-tag">Ban Xã Hội</div>
+          <h2 class="prog-title">Khoa học Xã Hội &<br>Nhân Văn Toàn Diện</h2>
+          <p class="prog-desc"></p>
+          <div class="prog-highlights">
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><rect x="6" y="18" width="12" height="4"/></svg></span><div><strong>Thành tích nổi bật</strong>2024: 8 giải HSG tỉnh Văn, Sử, Địa – Nhất toàn đoàn khối Xã Hội cấp tỉnh</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><strong>Kỹ năng mềm chuyên sâu</strong>Diễn thuyết, viết luận, tranh biện – CLB Văn học và Báo chí trường</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div><strong>Tỷ lệ đỗ đại học</strong>92% học sinh Ban Xã Hội đỗ vào các trường Luật, Kinh tế, Ngoại thương</div></div>
+            <div class="prog-highlight"><span class="hi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><div><strong>Tăng cường Văn – Sử</strong>Thêm 3 tiết/tuần Văn học và Lịch sử chuyên sâu</div></div>
+          </div>
+          
+        </div>
+      </div>
+        <h3 class="teachers-title reveal">Giáo viên tiêu biểu</h3>
+        <div class="teachers-grid reveal">
+          <div class="teacher-card reveal">
+            <div class="teacher-avatar"><img src="ngocmai.webp" alt="ThS. Vũ Thị Ngọc Mai" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">Nhà văn trẻ</div></div>
+            <div class="teacher-body">
+              <div class="teacher-name">ThS. Vũ Thị Ngọc Mai</div>
+              <div class="teacher-role">Giáo viên Ngữ văn – Ban Xã Hội</div>
+              <div class="teacher-tags"><span class="teacher-tag">Văn học</span><span class="teacher-tag">HSG tỉnh</span></div>
+            </div>
+          </div>
+          <div class="teacher-card reveal">
+            <div class="teacher-avatar"><img src="quoctuan.jpg" alt="ThS. Hoàng Quốc Tuấn" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">GV Giỏi tỉnh</div></div>
+            <div class="teacher-body">
+              <div class="teacher-name">ThS. Hoàng Quốc Tuấn</div>
+              <div class="teacher-role">Giáo viên Lịch sử – Địa lý</div>
+              <div class="teacher-tags"><span class="teacher-tag">Sử – Địa</span><span class="teacher-tag">GDCD</span></div>
+            </div>
+          </div>
+          <div class="teacher-card reveal">
+            <div class="teacher-avatar"><img src="thuhuong.webp" alt="ThS. Phạm Thu Hương" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 50%;"><div class="teacher-award">IELTS 8.0</div></div>
+            <div class="teacher-body">
+              <div class="teacher-name">ThS. Phạm Thu Hương</div>
+              <div class="teacher-role">Giáo viên Tiếng Anh Song ngữ</div>
+              <div class="teacher-tags"><span class="teacher-tag">Song ngữ</span><span class="teacher-tag">IELTS</span></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subjects-title reveal">Các môn học trong chương trình</h3>
+      <div class="subjects-grid reveal">
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="subj-name">Ngữ văn</div><div class="subj-info">Văn học Việt Nam, thế giới – tập làm văn nâng cao</div><span class="subj-badge badge-xh">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div><div class="subj-name">Lịch sử</div><div class="subj-info">Lịch sử VN & thế giới, tư duy lịch sử phân tích</div><span class="subj-badge badge-xh">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div><div class="subj-name">Địa lý</div><div class="subj-info">Địa lý tự nhiên & kinh tế – xã hội Việt Nam, thế giới</div><span class="subj-badge badge-xh">Bắt buộc · Nâng cao</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 6H2a2 2 0 0 0 0 4c2 0 3-2 3-2s1 2 3 2a2 2 0 0 0 0-4H5z"/><path d="M19 6h3a2 2 0 0 1 0 4c-2 0-3-2-3-2s-1 2-3 2a2 2 0 0 1 0-4h3z"/><line x1="5" y1="6" x2="19" y2="6"/></svg></div><div class="subj-name">GDCD – Pháp luật</div><div class="subj-info">Giáo dục công dân, kiến thức pháp lý cơ bản</div><span class="subj-badge badge-xh">Tự chọn</span></div>
+        <div class="subject-card"><div class="subj-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="subj-name">Tiếng Anh</div><div class="subj-info">Nâng cao giao tiếp, viết luận học thuật IELTS</div><span class="subj-badge badge-xh">Bắt buộc</span></div>
+      </div>
+      
+    </div>
+</section>
+
+
+<!-- ACTIVITIES -->
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:620px;margin:0 auto">
+      <div class="section-tag">Câu hỏi thường gặp</div>
+      <h2 class="section-title">Phụ huynh & học sinh<br>thường hỏi gì?</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">Học sinh lớp 9 căn cứ vào đâu để chọn chương trình học?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Việc lựa chọn chương trình dựa trên: (1) Năng lực học tập các môn (điểm số lớp 8-9), (2) Sở thích và đam mê cá nhân, (3) Định hướng nghề nghiệp tương lai. Nhà trường có đội ngũ tư vấn sẵn sàng hỗ trợ gia đình đưa ra quyết định phù hợp nhất.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Có thể chuyển ban sau khi đã nhập học không?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Học sinh có thể xin chuyển ban vào đầu năm học lớp 11 (không áp dụng trong năm học lớp 10). Điều kiện: kết quả học tập kỳ 2 lớp 10 đạt loại Khá trở lên, có đơn xin chuyển và được Hội đồng nhà trường chấp thuận.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Học phí các chương trình có khác nhau không?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Học phí tại trường dao động từ 350.000đ – 650.000đ/tháng tùy chương trình. Ban Tự Nhiên và Xã Hội: 350.000đ/tháng. Ngoài ra có các loại học phí tự nguyện như CLB, phụ đạo. Học sinh hoàn cảnh khó khăn được xem xét miễn giảm.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Trường có hỗ trợ học sinh đăng ký xét tuyển đại học không?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Có. Phòng Hướng nghiệp – Tuyển sinh của trường hỗ trợ toàn diện: tư vấn chọn ngành, phân tích điểm chuẩn hàng năm, hỗ trợ nộp hồ sơ xét tuyển, thông tin học bổng và chương trình du học. Mỗi học sinh lớp 12 sẽ có buổi tư vấn cá nhân.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+        <div class="logo-text">
+          <span class="logo-name">THPT C Kim Bảng</span>
+          <span class="logo-sub">Hà Nam · Thành lập 1975</span>
+        </div>
+      </a>
+      <p>Trường THPT C Kim Bảng là một trong những ngôi trường có truyền thống lâu đời tại tỉnh Hà Nam, với hơn 20 năm đào tạo và cống hiến cho sự nghiệp giáo dục.</p>
+      <div class="footer-socials">
+        <a href="https://web.facebook.com/profile.php?id=61575800982426&locale=vi_VN" target="_blank" rel="noopener" class="social-icon" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://zalo.me/0865619841" class="social-icon" title="Zalo" onclick="window.location='zalo://conversation?phone=0865619841'; setTimeout(function(){window.open('https://zalo.me/0865619841','_blank')},500); return false;">
+          <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M24 4C13 4 4 13 4 24c0 4.6 1.6 8.8 4.2 12.1L5.1 43l7.2-2.3C15.4 42.5 19.6 44 24 44c11 0 20-9 20-20S35 4 24 4zm10.2 27.4c-.4 1.1-2.3 2.1-3.2 2.2-.8.1-1.8.1-2.9-.2--.7-.2-1.5-.5-2.6-1-4.5-1.9-7.4-6.4-7.7-6.7-.3-.3-2.1-2.8-2.1-5.3s1.3-3.8 1.8-4.3c.5-.5 1-.6 1.4-.6.3 0 .7 0 1 .1.3 0 .7-.1 1.1.8.4 1 1.4 3.4 1.5 3.7.1.3.2.6 0 1-.2.3-.3.5-.6.8-.3.3-.5.5-.8.8-.3.3-.1.6.1.9.7 1 1.7 2.2 2.8 3.1 1.3 1.1 2.4 1.5 2.7 1.6.3.1.6.1.8-.1.3-.3 1.1-1.3 1.4-1.7.3-.4.6-.3 1-.2.4.2 2.8 1.3 3.2 1.5.4.2.7.3.8.5.1.4-.1 1.5-.5 2.6z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên kết nhanh</h4>
+      <ul>
+        <li><a href="trangchu.html">Trang chủ</a></li>
+        <li><a href="chuongtrinh.html">Chương trình đào tạo</a></li>
+        <li><a href="tuyensinh.html">Tuyển sinh</a></li>
+        <li><a href="tintuc.html">Tin tức & Sự kiện</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chương trình</h4>
+      <ul>
+        <li><a href="#">Ban Tự nhiên</a></li>
+        <li><a href="#">Ban Xã hội</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col" id="contact">
+      <h4>Liên hệ</h4>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span>Thị trấn Quế, Kim Bảng, Hà Nam</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <span>(0226) 386 xxxx</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span>thptckimbang@hanam.edu.vn</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>© 2024 Trường THPT C Kim Bảng – Hà Nam. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB -->
+<div class="fab-group">
+  <button class="fab top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Lên đầu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <a href="https://m.me/61575800982426" target="_blank" rel="noopener" class="fab chat" title="Nhắn tin Messenger"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+  <a href="tel:02263861234" class="fab phone" title="Gọi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.92z"/></svg></a>
+</div>
+
+<script>
+// Sticky header shadow on scroll
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 10) header.style.boxShadow = '0 4px 32px rgba(10,36,99,0.35)';
+  else header.style.boxShadow = '0 2px 24px rgba(10,36,99,0.25)';
+});
+
+// Mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeMenu = document.getElementById('closeMenu');
+
+  menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+// Reveal on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*70)
+      observer.unobserve(e.target)
+    }
+  })
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'})
+document.querySelectorAll('.reveal').forEach(r=>observer.observe(r))
+
+// Tabs
+const tabBtns=document.querySelectorAll('.tab-btn')
+const tabContents=document.querySelectorAll('.tab-content')
+function switchTab(tab){
+  tabBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===tab))
+  tabContents.forEach(c=>{
+    c.classList.toggle('active',c.id==='tab-'+tab)
+    if(c.id==='tab-'+tab){
+      // re-trigger reveals inside newly shown tab
+      c.querySelectorAll('.reveal').forEach(r=>{
+        r.classList.remove('visible')
+        setTimeout(()=>observer.observe(r),50)
+      })
+    }
+  })
+}
+tabBtns.forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)))
+
+// Hero chips scroll & tab switch
+document.querySelectorAll('.hero-chip[data-scroll]').forEach(chip=>{
+  chip.addEventListener('click',e=>{
+    e.preventDefault()
+    const tab=chip.dataset.scroll
+    document.querySelectorAll('.hero-chip').forEach(c=>c.classList.remove('active'))
+    chip.classList.add('active')
+    switchTab(tab)
+    document.getElementById('programs-section').scrollIntoView({behavior:'smooth',block:'start'})
+  })
+})
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item')
+    const wasOpen=item.classList.contains('open')
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'))
+    if(!wasOpen) item.classList.add('open')
+  })
+})
+</script>
+</body>
+</html>

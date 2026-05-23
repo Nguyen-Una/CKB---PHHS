@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ - Trường THPT C Kim Bảng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a2463;
+    --blue-mid: #1565c0;
+    --blue-bright: #1e88e5;
+    --blue-light: #e3f2fd;
+    --gold: #f4c430;
+    --gold-light: #fff9e6;
+    --gold-dark: #c9a000;
+    --white: #ffffff;
+    --gray-soft: #f7f9fc;
+    --gray-text: #555e7a;
+    --gray-border: #dde3ed;
+    --shadow-sm: 0 2px 12px rgba(10,36,99,0.08);
+    --shadow-md: 0 8px 32px rgba(10,36,99,0.13);
+    --shadow-lg: 0 20px 60px rgba(10,36,99,0.18);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #1a2340;
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--blue-light); }
+  ::-webkit-scrollbar-thumb { background: var(--blue-mid); border-radius: 3px; }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(10,36,99,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(10,36,99,0.25);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .header-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(10,36,99,0.18);
+    flex-shrink: 0; overflow: hidden;
+  }
+  .logo-icon img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block; border-radius: 50%;
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: #ffffff;
+  }
+  .logo-sub { display: none; }
+
+  nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+  nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    padding: 8px 14px; border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+  }
+  nav a:hover { color: #ffffff; background: rgba(255,255,255,0.1); }
+  nav a.active { color: #f4b942; background: rgba(244,185,66,0.15); }
+
+  .header-search {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 6px 14px; gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .header-search:focus-within {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(244,185,66,0.5);
+  }
+  .header-search input {
+    background: none; border: none; outline: none;
+    color: #ffffff; font-size: 13px; width: 140px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .header-search input::placeholder { color: rgba(255,255,255,0.45); }
+  .search-btn {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    display: flex; align-items: center;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .search-btn:hover { color: #f4b942; }
+
+  .menu-toggle {
+    display: none; background: none; border: none;
+    cursor: pointer; color: white;
+    flex-direction: column; gap: 5px; padding: 4px;
+    margin-left: auto;
+  }
+  .menu-toggle span {
+    display: block; width: 24px; height: 2px;
+    background: white; border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ===== NOTIFICATION BAR ===== */
+  .notif-bar {
+    background: linear-gradient(135deg, #f4b942, #f59e0b);
+    padding: 12px 24px;
+    display: flex; align-items: center; gap: 16px;
+    overflow: hidden;
+  }
+  .notif-bar .label {
+    background: var(--blue-deep); color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 4px;
+    white-space: nowrap; text-transform: uppercase;
+    letter-spacing: 0.06em; flex-shrink: 0;
+  }
+  .ticker-wrap { flex: 1; overflow: hidden; }
+  .ticker {
+    display: flex; gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker span { font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+  .ticker span::before { content: '• '; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== HERO (overlay matched to lienhe.html) ===== */
+  #hero {
+    margin-top: 72px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(11,31,74,0.72), rgba(11,31,74,0.72)), url('trangchu.jpg') center 95%/cover no-repeat;
+    min-height: 170px; display: flex; align-items: flex-end; overflow: hidden;
+  }
+  /* hide legacy background layers so overlay matches Liên hệ */
+  .hero-bg { display: none; }
+  .hero-particles { display: none; }
+  @keyframes particleFloat { to { background-position: 60px 60px, 75px 75px; } }
+
+  .hero-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(244,196,48,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,196,48,.08) 1px, transparent 1px);
+    background-size:80px 80px;
+  }
+  .hero-grid::before{
+    content: '';
+    position:absolute;inset:0;
+    background: linear-gradient(135deg, rgba(21,53,110,.8) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1280px; margin: 0 auto; padding: 60px 24px;
+    width: 100%;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(244,196,48,0.18);
+    border: 1px solid rgba(244,196,48,0.5);
+    color: var(--gold); border-radius: 50px;
+    padding: 8px 18px; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .hero-badge::before { content: ''; width:6px; height:6px; background:var(--gold); border-radius:50%; display:inline-block; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 800; color: white;
+    line-height: 1.12; max-width: 760px;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.7s 0.1s ease both;
+  }
+  /* Match yellow used on lienhe.html */
+  .hero-title .accent { color: #e8d48a; }
+
+  .hero-desc {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: rgba(255,255,255,0.85);
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeInUp 0.7s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeInUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--blue-deep);
+    padding: 15px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 6px 24px rgba(244,196,48,0.45);
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(244,196,48,0.55);
+    background: #ffd040;
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: white; border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 14px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none; cursor: pointer;
+    transition: all var(--transition);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.22); transform: translateY(-3px);
+    border-color: white;
+  }
+
+  .hero-stats {
+    position: absolute; bottom: 0; right: 0; left: 0; z-index: 2;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(16px);
+  }
+  .hero-stats-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 20px;
+    text-align: center; position: relative;
+    transition: all var(--transition);
+  }
+  .stat-item:not(:last-child)::after {
+    content: ''; position: absolute; right: 0; top: 25%; bottom: 25%;
+    width: 1px; background: var(--gray-border);
+  }
+  .stat-item:hover { background: var(--blue-light); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 800;
+    color: var(--blue-deep); line-height: 1;
+  }
+  .stat-num span { color: var(--gold-dark); }
+  .stat-label { font-size: 13px; color: var(--gray-text); font-weight: 500; margin-top: 6px; }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: 90px 24px; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--blue-mid); font-weight: 700; font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-tag::before {
+    content: ''; width: 28px; height: 3px;
+    background: linear-gradient(90deg, var(--blue-bright), var(--gold));
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700; color: var(--blue-deep);
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 16px; color: var(--gray-text); line-height: 1.7;
+    max-width: 560px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== ABOUT ===== */
+  #about { background: var(--gray-soft); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover; border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    display: block;
+    background: linear-gradient(135deg, #1565c0, #1e88e5);
+  }
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-bright) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px; box-shadow: var(--shadow-lg);
+  }
+  .about-badge-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold);
+    border-radius: var(--radius); padding: 20px 24px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+  .about-badge-float .big { font-size: 36px; font-weight: 800; color: var(--blue-deep); font-family: 'Playfair Display', serif; }
+  .about-badge-float .small { font-size: 12px; color: var(--blue-deep); font-weight: 600; }
+
+  .about-content { padding-left: 8px; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
+  }
+  .about-stat-card {
+    background: white; border-radius: var(--radius-sm);
+    padding: 20px; border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-sm); transition: all var(--transition);
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .about-stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-bright); }
+  .about-stat-icon {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
+  .about-stat-card:nth-child(1) .about-stat-icon { background: #e3f2fd; }
+  .about-stat-card:nth-child(2) .about-stat-icon { background: #fff9e6; }
+  .about-stat-card:nth-child(3) .about-stat-icon { background: #e8f5e9; }
+  .about-stat-card:nth-child(4) .about-stat-icon { background: #fce4ec; }
+  .about-stat-num { font-size: 22px; font-weight: 800; color: var(--blue-deep); font-family: 'Playfair Display', serif; }
+  .about-stat-label { font-size: 12.5px; color: var(--gray-text); font-weight: 500; }
+
+  /* ===== PROGRAMS ===== */
+  #programs { background: white; }
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px;
+  }
+  .program-card {
+    border-radius: var(--radius); overflow: hidden;
+    background: white; border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-sm); transition: all var(--transition);
+    display: flex; flex-direction: column;
+  }
+  .program-card:hover {
+    transform: translateY(-8px); box-shadow: var(--shadow-lg);
+    border-color: transparent;
+  }
+  .program-img {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px; position: relative; overflow: hidden;
+  }
+  .program-card:nth-child(1) .program-img { background: linear-gradient(135deg, #0a2463, #1565c0); }
+  .program-card:nth-child(2) .program-img { background: linear-gradient(135deg, #1b5e20, #43a047); }
+  .program-card:nth-child(3) .program-img { background: linear-gradient(135deg, #4a148c, #8e24aa); }
+  .program-card:nth-child(4) .program-img { background: linear-gradient(135deg, #e65100, #fb8c00); }
+  .program-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .program-name {
+    font-weight: 700; font-size: 17px; color: var(--blue-deep);
+    margin-bottom: 10px;
+  }
+  .program-desc { font-size: 13.5px; color: var(--gray-text); line-height: 1.65; flex: 1; }
+  .program-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .program-tag {
+    background: var(--blue-light); color: var(--blue-mid);
+    padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600;
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; border-radius: 8px;
+    border: 1.5px solid var(--blue-bright); color: var(--blue-mid);
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: all var(--transition); align-self: flex-start;
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
+  .btn-outline .arrow { transition: transform var(--transition); }
+  .btn-outline:hover .arrow { transform: translateX(4px); }
+
+  /* ===== ADMISSIONS ===== */
+  #admissions {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #1565c0 50%, #1e3a8a 100%);
+    position: relative; overflow: hidden;
+  }
+  #admissions::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  #admissions::after {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(244,196,48,0.15), transparent 60%);
+    border-radius: 50%;
+  }
+  #admissions .section-tag { color: var(--gold); }
+  #admissions .section-tag::before { background: var(--gold); }
+  #admissions .section-title { color: white; }
+  #admissions .section-desc { color: rgba(255,255,255,0.75); max-width: 700px; }
+
+  .admissions-header { margin-bottom: 56px; }
+  .admissions-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; z-index: 1;
+  }
+  .admission-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: var(--radius); padding: 30px 24px;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .admission-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+    opacity: 0; transition: opacity var(--transition);
+  }
+  .admission-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-6px);
+    border-color: rgba(244,196,48,0.5);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .admission-card:hover::before { opacity: 1; }
+  .admission-icon {
+    font-size: 40px; margin-bottom: 18px; display: block;
+  }
+  .admission-card h3 {
+    font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 14px;
+  }
+  .admission-list { list-style: none; }
+  .admission-list li {
+    font-size: 13.5px; color: rgba(255,255,255,0.82); padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; gap: 8px; align-items: flex-start; line-height: 1.5;
+  }
+  .admission-list li:last-child { border-bottom: none; }
+  .admission-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+
+  .admissions-cta {
+    text-align: center; margin-top: 48px; position: relative; z-index: 1;
+  }
+
+  /* ===== NEWS ===== */
+  #news { background: var(--gray-soft); }
+  .news-header {
+    display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 24px;
+  }
+  .news-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px;
+  }
+  .news-featured {
+    border-radius: var(--radius); overflow: hidden;
+    background: white; box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-border);
+    transition: all var(--transition);
+    display: flex; flex-direction: column;
+  }
+  .news-featured:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .news-featured-img {
+    height: 280px;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+    display: flex; align-items: center; justify-content: center; font-size: 80px;
+    position: relative;
+  }
+  .news-cat {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--gold); color: var(--blue-deep);
+    padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  }
+  .news-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .news-meta { font-size: 12px; color: #9aa3b8; margin-bottom: 10px; display: flex; gap: 12px; align-items: center; }
+  .news-meta .divider { width: 3px; height: 3px; background: #ccc; border-radius: 50%; }
+  .news-title {
+    font-size: 18px; font-weight: 700; color: var(--blue-deep); margin-bottom: 12px;
+    line-height: 1.4; text-decoration: none; display: block;
+  }
+  .news-title:hover { color: var(--blue-mid); }
+  .news-excerpt { font-size: 14px; color: var(--gray-text); line-height: 1.7; flex: 1; }
+  .news-readmore {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--blue-mid); font-weight: 700; font-size: 14px;
+    text-decoration: none; margin-top: 18px;
+    transition: gap var(--transition);
+  }
+  .news-readmore:hover { gap: 10px; }
+
+  .news-list { display: flex; flex-direction: column; gap: 16px; }
+  .news-item {
+    background: white; border-radius: var(--radius-sm);
+    padding: 16px; display: flex; gap: 16px; align-items: flex-start;
+    border: 1px solid var(--gray-border); box-shadow: var(--shadow-sm);
+    transition: all var(--transition); text-decoration: none;
+  }
+  .news-item:hover { transform: translateX(6px); border-color: var(--blue-bright); }
+  .news-thumb {
+    width: 80px; height: 70px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+  }
+  .news-item:nth-child(1) .news-thumb { background: linear-gradient(135deg, #1565c0, #1e88e5); }
+  .news-item:nth-child(2) .news-thumb { background: linear-gradient(135deg, #2e7d32, #43a047); }
+  .news-item:nth-child(3) .news-thumb { background: linear-gradient(135deg, #6a1b9a, #9c27b0); }
+  .news-item:nth-child(4) .news-thumb { background: linear-gradient(135deg, #c62828, #e53935); }
+  .news-item-title { font-size: 14px; font-weight: 600; color: var(--blue-deep); line-height: 1.4; margin-bottom: 6px; }
+  .news-item-date { font-size: 12px; color: #9aa3b8; }
+
+  /* ===== GALLERY ===== */
+  #gallery { background: white; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 16px; margin-top: 48px;
+  }
+  .gallery-item {
+    border-radius: var(--radius-sm); overflow: hidden;
+    position: relative; cursor: pointer;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(5) { grid-column: span 2; }
+  .gallery-item-inner {
+    width: 100%; height: 100%; min-height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; transition: transform 0.5s ease;
+    position: relative;
+  }
+  .gallery-item:nth-child(1) .gallery-item-inner { min-height: 360px; font-size: 80px; background: linear-gradient(135deg, #0a2463, #1e88e5); }
+  .gallery-item:nth-child(2) .gallery-item-inner { background: linear-gradient(135deg, #1b5e20, #66bb6a); }
+  .gallery-item:nth-child(3) .gallery-item-inner { background: linear-gradient(135deg, #4a148c, #ba68c8); }
+  .gallery-item:nth-child(4) .gallery-item-inner { background: linear-gradient(135deg, #e65100, #ffb74d); }
+  .gallery-item:nth-child(5) .gallery-item-inner { min-height: 180px; font-size: 60px; background: linear-gradient(135deg, #00695c, #4db6ac); }
+  .gallery-item:nth-child(6) .gallery-item-inner { background: linear-gradient(135deg, #c62828, #ef9a9a); }
+  .gallery-item:nth-child(7) .gallery-item-inner { background: linear-gradient(135deg, #0277bd, #81d4fa); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(10,36,99,0.85) 100%);
+    opacity: 0; transition: opacity var(--transition);
+    display: flex; align-items: flex-end; padding: 16px;
+  }
+  .gallery-item:hover .gallery-item-inner { transform: scale(1.06); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: white; font-size: 13px; font-weight: 600; }
+
+  /* ===== CONTACT ===== */
+  #contact { background: var(--gray-soft); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 56px;
+  }
+  .contact-form-wrap {
+    background: white; border-radius: var(--radius); padding: 40px;
+    box-shadow: var(--shadow-md); border: 1px solid var(--gray-border);
+  }
+  .form-row { margin-bottom: 20px; }
+  .form-row label {
+    display: block; font-size: 13.5px; font-weight: 600; color: var(--blue-deep);
+    margin-bottom: 8px;
+  }
+  .form-row input, .form-row textarea, .form-row select {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--gray-border); border-radius: var(--radius-sm);
+    font-size: 14px; font-family: inherit; color: #1a2340;
+    background: var(--gray-soft); outline: none;
+    transition: all var(--transition);
+  }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+    border-color: var(--blue-bright); background: white;
+    box-shadow: 0 0 0 3px rgba(30,136,229,0.12);
+  }
+  .form-row textarea { min-height: 120px; resize: vertical; }
+  .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-submit {
+    width: 100%; padding: 15px; border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+    color: white; font-size: 15px; font-weight: 700;
+    border: none; cursor: pointer; font-family: inherit;
+    transition: all var(--transition);
+    box-shadow: 0 6px 24px rgba(21,101,192,0.4);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(21,101,192,0.5);
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .contact-info-card {
+    background: white; border-radius: var(--radius); padding: 24px;
+    border: 1px solid var(--gray-border); box-shadow: var(--shadow-sm);
+  }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start; padding: 14px 0;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+    background: var(--blue-light); display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .contact-item-label { font-size: 12px; color: #9aa3b8; font-weight: 500; margin-bottom: 2px; }
+  .contact-item-value { font-size: 14.5px; font-weight: 600; color: var(--blue-deep); }
+
+  .map-embed {
+    border-radius: var(--radius); overflow: hidden;
+    background: linear-gradient(135deg, var(--blue-light), #e8f4fd);
+    height: 220px; display: flex; align-items: center; justify-content: center;
+    font-size: 48px; font-weight: 700; color: var(--blue-mid);
+    flex-direction: column; gap: 10px;
+    border: 1px solid var(--gray-border);
+  }
+  .map-embed p { font-size: 14px; font-weight: 500; color: var(--gray-text); }
+
+  .quick-contacts { display: flex; gap: 12px; margin-top: 20px; }
+  .quick-btn {
+    flex: 1; padding: 12px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: all var(--transition);
+  }
+  .quick-btn.zalo { background: #0068FF; color: white; }
+  .quick-btn.fb { background: #1877F2; color: white; }
+  .quick-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0b1f4a;
+    color: rgba(255,255,255,0.8);
+  }
+  .footer-top {
+    max-width: 1280px; margin: 0 auto; padding: 60px 24px 40px;
+    display: grid; grid-template-columns: 2fr 1fr 1.3fr 1.5fr; gap: 48px;
+  }
+  .footer-brand .logo { margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+  .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+  .social-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none; font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .social-icon:hover { background: #c9a84c; border-color: #c9a84c; color: #0b1f4a; transform: translateY(-3px); }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif; font-size: 16px; color: white;
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 2px solid rgba(244,185,66,0.4);
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-col ul li a::before { content: '›'; color: #c9a84c; font-size: 16px; line-height: 1; }
+  .footer-col ul li a:hover { color: #c9a84c; padding-left: 4px; }
+  .footer-contact-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .contact-icon {
+    width: 32px; height: 32px; background: rgba(244,185,66,0.15); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: #c9a84c;
+  }
+  .footer-contact-item span { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 24px; }
+  .footer-bottom-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ===== FLOATING ACTIONS ===== */
+  .fab-group {
+    position: fixed; bottom: 28px; right: 28px; z-index: 900;
+    display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+  }
+  .fab {
+    width: 52px; height: 52px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; text-decoration: none; cursor: pointer;
+    box-shadow: var(--shadow-md); transition: all var(--transition);
+    border: none;
+  }
+  .fab:hover { transform: scale(1.12) translateY(-2px); }
+  .fab.top { background: var(--blue-deep); color: white; }
+  .fab.chat { background: #0068FF; color: white; }
+  .fab.phone { background: #25D366; color: white; }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(10,36,99,0.98);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 24px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none; font-size: 22px; font-weight: 600;
+    padding: 12px 24px; border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    width: 100%; text-align: center;
+  }
+  .mobile-nav a:hover { color: #f4b942; background: rgba(255,255,255,0.08); }
+  .mobile-nav a.active { color: #f4b942; }
+  .mobile-close {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(255,255,255,0.1); border: none; color: white;
+    width: 44px; height: 44px; border-radius: 12px;
+    cursor: pointer; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .admissions-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2)::after { display: none; }
+  }
+  @media (max-width: 900px) {
+    nav, .header-search { display: none; }
+    .menu-toggle { display: flex; }
+    .about-grid, .contact-grid, .news-grid { grid-template-columns: 1fr; }
+    .about-badge-float { bottom: 10px; right: 10px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(5) { grid-column: span 1; }
+    section { padding: 60px 20px; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .programs-grid, .admissions-grid { grid-template-columns: 1fr; }
+    .form-row-half { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .quick-contacts { flex-direction: column; }
+    .news-header { flex-direction: column; align-items: flex-start; }
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    .about-stats { grid-template-columns: 1fr; }
+  }
+
+  /* ===== HISTORY / TIMELINE ===== */
+  #history { background: white; }
+
+  .timeline {
+    position: relative;
+    max-width: 900px; margin: 0 auto;
+    padding-bottom: 16px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--blue-bright), var(--gold));
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    display: flex; margin-bottom: 48px; position: relative;
+  }
+  .timeline-item.left { flex-direction: row; }
+  .timeline-item.right { flex-direction: row-reverse; }
+
+  .timeline-dot {
+    position: absolute; left: 50%; top: 28px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--blue-bright);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--blue-bright);
+    transform: translateX(-50%);
+    z-index: 1; transition: all var(--transition);
+  }
+  .timeline-dot.gold {
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold);
+  }
+  .timeline-item.img-active .timeline-dot { transform: translateX(-50%) scale(1.3); }
+  .timeline-item:hover .timeline-dot { transform: translateX(-50%) scale(1.3); }
+
+  .timeline-card {
+    width: calc(50% - 36px);
+    background: white;
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+    position: relative;
+  }
+  .timeline-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: var(--blue-bright); }
+  .timeline-item.left .timeline-card { margin-right: 36px; }
+  .timeline-item.right .timeline-card { margin-left: 36px; }
+
+  .timeline-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #fffdf0, white);
+  }
+  .timeline-card.featured:hover { border-color: var(--gold-dark); }
+
+  .timeline-year {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+    padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 12px; letter-spacing: 0.06em;
+  }
+  .timeline-card.featured .timeline-year {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--blue-deep);
+  }
+  .timeline-title {
+    font-size: 17px; font-weight: 700; color: var(--blue-deep);
+    margin-bottom: 10px; line-height: 1.35;
+  }
+  .timeline-desc {
+    font-size: 14px; color: var(--gray-text); line-height: 1.7;
+  }
+
+
+  /* ===== TIMELINE IMAGE PREVIEW PANEL ===== */
+  .timeline-item.has-img-preview {
+    align-items: flex-start;
+  }
+
+  /* The image panel — absolutely positioned so it never disrupts the layout */
+  .timeline-item .timeline-img-panel {
+    position: absolute;
+    top: 0;
+    width: calc(50% - 52px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1),
+                transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index: 10;
+  }
+
+  /* LEFT card → panel appears on the RIGHT of the centre line */
+  .timeline-item.left .timeline-img-panel {
+    left: calc(50% + 28px);
+    transform: translateX(16px) scale(0.96);
+  }
+  .timeline-item.left .timeline-img-panel.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .timeline-img-inner {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .timeline-img-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+    overflow: hidden;
+  }
+
+  .timeline-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .timeline-item.img-active .timeline-img-frame img { transform: scale(1.05); }
+
+  .timeline-img-fallback {
+    display: none;
+    width: 100%; height: 100%;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500;
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item.left .timeline-img-panel { display: none; }
+  }
+
+
+  /* RIGHT card → panel appears on the LEFT of the centre line */
+  .timeline-item.right .timeline-img-panel {
+    right: calc(50% + 28px);
+    transform: translateX(-16px) scale(0.96);
+  }
+  .timeline-item.right .timeline-img-panel.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item .timeline-img-panel { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .timeline::before { left: 20px; }
+    .timeline-item, .timeline-item.right { flex-direction: row; }
+    .timeline-dot { left: 20px; }
+    .timeline-card { width: calc(100% - 56px); margin-left: 56px !important; margin-right: 0 !important; }
+  }
+
+  /* ===== ACHIEVEMENTS ===== */
+  #achievements { background: var(--gray-soft); }
+
+  .achievements-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-bottom: 56px;
+  }
+
+  .achievement-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .achievement-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--ac, var(--blue-deep));
+    border-radius: 3px 3px 0 0;
+  }
+  .achievement-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+  .achievement-icon-wrap {
+    width: 60px; height: 60px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .achievement-icon-wrap.blue { background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright)); }
+  .achievement-icon-wrap.gold { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); }
+  .achievement-icon-wrap.green { background: linear-gradient(135deg, #2e7d32, #66bb6a); }
+  .achievement-icon-wrap.purple { background: linear-gradient(135deg, #6a1b9a, #ba68c8); }
+  .achievement-icon-wrap.red { background: linear-gradient(135deg, #b71c1c, #ef5350); }
+  .achievement-icon-wrap.cyan { background: linear-gradient(135deg, #0277bd, #4fc3f7); }
+
+  .achievement-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 800;
+    color: var(--ac, var(--blue-deep));
+    line-height: 1; margin-bottom: 6px;
+  }
+  .achievement-num span { font-size: 28px; }
+  .achievement-label {
+    font-size: 14px; font-weight: 700; color: var(--blue-deep);
+    margin-bottom: 14px; line-height: 1.4;
+  }
+  .achievement-desc { font-size: 13.5px; color: var(--gray-text); line-height: 1.65; }
+
+  /* Inspiration banner */
+  .inspiration-banner {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #1565c0 50%, #1e3a8a 100%);
+    border-radius: var(--radius);
+    padding: 56px 56px;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .inspiration-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .inspiration-banner::after {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(244,196,48,0.15), transparent 60%);
+    border-radius: 50%;
+  }
+  .inspiration-left { position: relative; z-index: 1; }
+  .inspiration-awards {
+    display: flex; flex-direction: column; gap: 16px;
+    position: relative; z-index: 1;
+  }
+  .award-badge {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(244,196,48,0.3);
+    border-radius: var(--radius-sm); padding: 16px 20px;
+    transition: all var(--transition);
+  }
+  .award-badge:hover { background: rgba(255,255,255,0.17); border-color: rgba(244,196,48,0.6); }
+  .award-badge span { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.4; }
+
+  @media (max-width: 1100px) {
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .inspiration-banner { grid-template-columns: 1fr; padding: 40px 32px; }
+  }
+  @media (max-width: 600px) {
+    .achievements-grid { grid-template-columns: 1fr; }
+    .inspiration-banner { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar">
+  <span class="label">🔔 Thông báo</span>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+      <span>Khai mạc kỳ thi học sinh giỏi tỉnh Hà Nam năm học 2024–2025</span>
+      <span>Thông báo lịch nghỉ Tết Nguyên Đán 2025 cho học sinh toàn trường</span>
+      <span>Hội thao truyền thống THPT C Kim Bảng lần thứ 30 – Chờ đón ngay!</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="trangchu.html" class="logo">
+      <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+      <div class="logo-text">
+        <span class="logo-name">THPT C Kim Bảng</span>
+      </div>
+    </a>
+    <nav>
+      <a href="trangchu.html" class="active">Trang chủ</a>
+      <a href="chuongtrinh.html">Chương trình đào tạo</a>
+      <a href="tuyensinh.html">Tuyển sinh</a>
+      <a href="tintuc.html">Tin tức</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="closeMenu">✕</button>
+  <a href="trangchu.html" class="active">🏠 Trang chủ</a>
+  <a href="chuongtrinh.html">📚 Chương trình đào tạo</a>
+  <a href="tuyensinh.html">📝 Tuyển sinh</a>
+  <a href="tintuc.html">📰 Tin tức</a>
+  <a href="lienhe.html">📞 Liên hệ</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Trang chủ<br><span class="accent">Trường THPT C Kim Bảng</span></h1>
+    <p class="hero-desc">Môi trường học tập hiện đại, năng động – nơi mỗi học sinh được khơi dậy tiềm năng, phát triển toàn diện và chắp cánh ước mơ vào đại học.</p>
+    <div class="hero-cta">
+      <a href="#admissions" class="btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Tìm hiểu tuyển sinh</a>
+      <a href="chuongtrinh.html" class="btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Khám phá chương trình <span>→</span></a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stats-inner">
+      <div class="stat-item">
+        <div class="stat-num"><span id="count1">0</span><span>+</span></div>
+        <div class="stat-label">Học sinh toàn trường</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span id="count2">0</span><span>%</span></div>
+        <div class="stat-label">Tỷ lệ đỗ đại học</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span id="count3">0</span><span>+</span></div>
+        <div class="stat-label">Giải thưởng học sinh giỏi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span id="count4">0</span><span>+</span></div>
+        <div class="stat-label">Giáo viên chất lượng cao</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-img-wrap">
+        <img src="nentrangchu.jpg" alt="Trường THPT C Kim Bảng" class="about-img">
+        <div class="about-badge-float">
+          <div class="big">20+</div>
+          <div class="small">Năm thành lập</div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-tag">Giới thiệu trường</div>
+        <h2 class="section-title">Hành trình hơn 20 năm<br>Ươm Mầm Tri Thức</h2>
+        <p class="section-desc">Trường THPT C Kim Bảng được thành lập với sứ mệnh đào tạo thế hệ học sinh toàn diện về tri thức, phẩm chất và kỹ năng. Qua nhiều thập kỷ, nhà trường luôn giữ vững vị thế là cơ sở giáo dục uy tín của tỉnh Hà Nam.</p>
+        <p class="section-desc" style="margin-top:12px;">Với đội ngũ giáo viên tận tâm, cơ sở vật chất hiện đại và phương pháp giảng dạy tiên tiến, chúng tôi cam kết mang đến môi trường học tập tốt nhất cho mỗi học sinh.</p>
+        <div class="about-stats">
+          <div class="about-stat-card">
+            <div class="about-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div>
+              <div class="about-stat-num">1.000+</div>
+              <div class="about-stat-label">Học sinh hiện tại</div>
+            </div>
+          </div>
+          <div class="about-stat-card">
+            <div class="about-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><rect x="6" y="18" width="12" height="4"/></svg></div>
+            <div>
+              <div class="about-stat-num">95%</div>
+              <div class="about-stat-label">Tỷ lệ đỗ đại học</div>
+            </div>
+          </div>
+          <div class="about-stat-card">
+            <div class="about-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <div>
+              <div class="about-stat-num">100+</div>
+              <div class="about-stat-label">Giải HS giỏi tỉnh</div>
+            </div>
+          </div>
+          <div class="about-stat-card">
+            <div class="about-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div>
+              <div class="about-stat-num">50+</div>
+              <div class="about-stat-label">Giáo viên ưu tú</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="container">
+    <div style="text-align:center; max-width:680px; margin:0 auto 64px;" class="reveal">
+      <div class="section-tag">Lịch sử hình thành</div>
+      <h2 class="section-title">Hành trình xây dựng &<br>phát triển nhà trường</h2>
+      <p class="section-desc" style="margin:0 auto;">Từ những ngày đầu thành lập với cơ sở vật chất còn giản dị, Trường THPT C Kim Bảng đã không ngừng vươn lên trở thành một trong những trường THPT uy tín của tỉnh Hà Nam.</p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline reveal">
+
+      <div class="timeline-item left has-img-preview" id="tl-1997">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">1997</div>
+          <h3 class="timeline-title">Thành lập trường</h3>
+          <p class="timeline-desc">Trường THPT C Kim Bảng chính thức được thành lập theo Quyết định của UBND tỉnh Hà Nam, đáp ứng nhu cầu học tập ngày càng tăng của con em nhân dân huyện Kim Bảng. Ngôi trường bắt đầu với 4 lớp học đầu tiên và đội ngũ giáo viên nhiệt huyết, tâm huyết với nghề.</p>
+        </div>
+        <div class="timeline-img-panel">
+          <div class="timeline-img-inner">
+            <div class="timeline-img-frame">
+              <img src="truong1997.jpg" alt="Trường THPT C Kim Bảng năm 1997" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="timeline-img-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Hình ảnh ngày thành lập</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right has-img-preview" id="tl-2002">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2002</div>
+          <h3 class="timeline-title">Mở rộng quy mô – Xây dựng cơ sở vật chất</h3>
+          <p class="timeline-desc">Sau 5 năm hoạt động, nhà trường đã mở rộng lên 12 lớp học, đầu tư xây dựng dãy phòng học mới, phòng thí nghiệm và thư viện. Số lượng học sinh tăng gấp 3 lần so với năm đầu thành lập, khẳng định uy tín và chất lượng giáo dục của nhà trường trong cộng đồng.</p>
+        </div>
+        <div class="timeline-img-panel">
+          <div class="timeline-img-inner">
+            <div class="timeline-img-frame">
+              <img src="truong2002.jpg" alt="Mở rộng trường – 2002" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="timeline-img-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Mở rộng trường – 2002</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item left has-img-preview" id="tl-2008">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2008</div>
+          <h3 class="timeline-title">Đạt chuẩn Quốc gia lần đầu</h3>
+          <p class="timeline-desc">Trường THPT C Kim Bảng vinh dự được công nhận đạt chuẩn Quốc gia lần đầu tiên – một dấu mốc quan trọng khẳng định chất lượng toàn diện về đội ngũ, cơ sở vật chất và thành tích dạy – học. Đây là nền tảng vững chắc cho những bước phát triển tiếp theo.</p>
+        </div>
+        <div class="timeline-img-panel">
+          <div class="timeline-img-inner">
+            <div class="timeline-img-frame">
+              <img src="truong2008.jpg" alt="Lễ công nhận chuẩn Quốc gia – 2008" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="timeline-img-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Lễ công nhận chuẩn Quốc gia – 2008</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right has-img-preview" id="tl-2015">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2015</div>
+          <h3 class="timeline-title">Hiện đại hóa cơ sở vật chất</h3>
+          <p class="timeline-desc">Giai đoạn 2013–2015, trường tiến hành đầu tư nâng cấp toàn diện: khánh thành phòng máy tính nối mạng Internet, phòng thực hành vật lý – hóa học – sinh học hiện đại, hệ thống phòng học bảng thông minh và sân thể thao đa năng phục vụ gần 1.200 học sinh.</p>
+        </div>
+        <div class="timeline-img-panel">
+          <div class="timeline-img-inner">
+            <div class="timeline-img-frame">
+              <img src="truong2015.jpg" alt="Cơ sở vật chất hiện đại – 2015" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="timeline-img-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Cơ sở vật chất hiện đại – 2015</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item left has-img-preview" id="tl-2020">
+        <div class="timeline-dot gold"></div>
+        <div class="timeline-card featured">
+          <div class="timeline-year">2020 – nay</div>
+          <h3 class="timeline-title">Chuyển đổi số & Nâng cao chất lượng</h3>
+          <p class="timeline-desc">Bước vào thập kỷ mới, nhà trường đẩy mạnh chuyển đổi số trong dạy – học, triển khai hệ thống học trực tuyến, quản lý học bạ điện tử và ứng dụng công nghệ thông tin vào mọi hoạt động. Tỷ lệ học sinh đỗ đại học liên tục đạt trên 95%, nhiều em đạt điểm cao trong kỳ thi THPT Quốc gia.</p>
+        </div>
+        <div class="timeline-img-panel">
+          <div class="timeline-img-inner">
+            <div class="timeline-img-frame">
+              <img src="truong2020.jpg" alt="Chuyển đổi số – 2020 đến nay" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="timeline-img-fallback">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Chuyển đổi số – 2020 đến nay</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 56px;" class="reveal">
+      <div class="section-tag">Thành tích tiêu biểu</div>
+      <h2 class="section-title">Những dấu ấn<br>tự hào của nhà trường</h2>
+      <p class="section-desc" style="margin:0 auto;">Qua hơn 25 năm xây dựng và phát triển, Trường THPT C Kim Bảng đã ghi dấu ấn bằng nhiều thành tích xuất sắc trên nhiều lĩnh vực.</p>
+    </div>
+
+    <div class="achievements-grid">
+
+      <div class="achievement-card reveal" style="--ac:var(--blue-deep);">
+        <div class="achievement-icon-wrap blue">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="achievement-num">300<span>+</span></div>
+        <div class="achievement-label">Giải học sinh giỏi cấp tỉnh</div>
+        <p class="achievement-desc">Tích lũy hơn 300 giải thưởng các môn tại kỳ thi học sinh giỏi tỉnh Hà Nam, nhiều năm liền nằm trong top trường dẫn đầu toàn tỉnh về số lượng và chất lượng giải.</p>
+      </div>
+
+      <div class="achievement-card reveal" style="--ac:var(--gold-dark);">
+        <div class="achievement-icon-wrap gold">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        </div>
+        <div class="achievement-num">5</div>
+        <div class="achievement-label">Giải HSG cấp Quốc gia</div>
+        <p class="achievement-desc">Tự hào có học sinh đạt giải trong kỳ thi học sinh giỏi Quốc gia, trong đó có giải Ba môn Toán và Ngữ Văn – những thành tích đặc biệt xuất sắc với một trường THPT vùng tỉnh.</p>
+      </div>
+
+      <div class="achievement-card reveal" style="--ac:#2e7d32;">
+        <div class="achievement-icon-wrap green">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><rect x="6" y="18" width="12" height="4"/></svg>
+        </div>
+        <div class="achievement-num">95<span>%</span></div>
+        <div class="achievement-label">Tỷ lệ đỗ đại học liên tiếp</div>
+        <p class="achievement-desc">Nhiều năm liền duy trì tỷ lệ học sinh đỗ đại học, cao đẳng trên 95%, trong đó hơn 30% đỗ các trường đại học top đầu như ĐH Bách Khoa, Y Hà Nội, Ngoại Thương, Kinh tế Quốc dân.</p>
+      </div>
+
+      <div class="achievement-card reveal" style="--ac:#6a1b9a;">
+        <div class="achievement-icon-wrap purple">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="achievement-num">15.000<span>+</span></div>
+        <div class="achievement-label">Cựu học sinh thành đạt</div>
+        <p class="achievement-desc">Hơn 15.000 thế hệ học sinh đã tốt nghiệp và trưởng thành từ mái trường này, nhiều người nay là cán bộ, nhà khoa học, doanh nhân thành đạt, đóng góp tích cực cho xã hội.</p>
+      </div>
+
+      <div class="achievement-card reveal" style="--ac:#b71c1c;">
+        <div class="achievement-icon-wrap red">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="achievement-num">3</div>
+        <div class="achievement-label">Lần đạt danh hiệu Trường Tiên tiến xuất sắc</div>
+        <p class="achievement-desc">Ba lần liên tiếp được UBND tỉnh Hà Nam tặng danh hiệu Trường Tiên tiến xuất sắc – ghi nhận những nỗ lực không ngừng của toàn thể cán bộ, giáo viên và học sinh.</p>
+      </div>
+
+      <div class="achievement-card reveal" style="--ac:#0277bd;">
+        <div class="achievement-icon-wrap cyan">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="achievement-num">50<span>+</span></div>
+        <div class="achievement-label">Giáo viên giỏi cấp tỉnh</div>
+        <p class="achievement-desc">Đội ngũ hơn 50 giáo viên đạt danh hiệu Giáo viên giỏi cấp tỉnh, trong đó nhiều thầy cô là chiến sĩ thi đua, giáo viên dạy giỏi toàn quốc – nền tảng cốt lõi tạo nên chất lượng đào tạo.</p>
+      </div>
+
+    </div>
+
+    <!-- Banner truyền cảm hứng -->
+    <div class="inspiration-banner reveal">
+      <div class="inspiration-left">
+        <div class="section-tag" style="color:var(--gold);">Sứ mệnh & Tầm nhìn</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:clamp(22px,2.8vw,34px); font-weight:700; color:white; line-height:1.3; margin:12px 0 16px;">
+          "Mỗi học sinh là một<br><span style="color:var(--gold);">tài năng cần được thắp sáng"</span>
+        </h3>
+        <p style="font-size:15px; color:rgba(255,255,255,0.78); line-height:1.7; max-width:480px;">Trường THPT C Kim Bảng kiên định với sứ mệnh đào tạo học sinh phát triển toàn diện – vừa giỏi về học thuật, vừa vững về nhân cách và kỹ năng sống, sẵn sàng hội nhập và cống hiến cho xã hội.</p>
+      </div>
+      <div class="inspiration-awards">
+        <div class="award-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Trường Tiên tiến<br>Xuất sắc tỉnh Hà Nam</span>
+        </div>
+        <div class="award-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <span>Top trường THPT<br>chất lượng Hà Nam</span>
+        </div>
+        <div class="award-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <span>Đạt chuẩn<br>Quốc gia</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- dummy sections for nav compatibility -->
+<section id="programs" style="display:none;"></section>
+<section id="admissions" style="display:none;"></section>
+<section id="news" style="display:none;"></section>
+<section id="gallery" style="display:none;"></section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon"><img src="logo_CKB.jpg" alt="Logo THPT C Kim Bảng" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div>
+        <div class="logo-text">
+          <span class="logo-name">THPT C Kim Bảng</span>
+          <span class="logo-sub">Hà Nam · Thành lập 1975</span>
+        </div>
+      </a>
+      <p>Trường THPT C Kim Bảng là một trong những ngôi trường có truyền thống lâu đời tại tỉnh Hà Nam, với hơn 20 năm đào tạo và cống hiến cho sự nghiệp giáo dục.</p>
+      <div class="footer-socials">
+        <a href="https://web.facebook.com/profile.php?id=61575800982426&locale=vi_VN" target="_blank" rel="noopener" class="social-icon" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://zalo.me/0865619841" class="social-icon" title="Zalo" onclick="window.location='zalo://conversation?phone=0865619841'; setTimeout(function(){window.open('https://zalo.me/0865619841','_blank')},500); return false;">
+          <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M24 4C13 4 4 13 4 24c0 4.6 1.6 8.8 4.2 12.1L5.1 43l7.2-2.3C15.4 42.5 19.6 44 24 44c11 0 20-9 20-20S35 4 24 4zm10.2 27.4c-.4 1.1-2.3 2.1-3.2 2.2-.8.1-1.8.1-2.9-.2--.7-.2-1.5-.5-2.6-1-4.5-1.9-7.4-6.4-7.7-6.7-.3-.3-2.1-2.8-2.1-5.3s1.3-3.8 1.8-4.3c.5-.5 1-.6 1.4-.6.3 0 .7 0 1 .1.3 0 .7-.1 1.1.8.4 1 1.4 3.4 1.5 3.7.1.3.2.6 0 1-.2.3-.3.5-.6.8-.3.3-.5.5-.8.8-.3.3-.1.6.1.9.7 1 1.7 2.2 2.8 3.1 1.3 1.1 2.4 1.5 2.7 1.6.3.1.6.1.8-.1.3-.3 1.1-1.3 1.4-1.7.3-.4.6-.3 1-.2.4.2 2.8 1.3 3.2 1.5.4.2.7.3.8.5.1.4-.1 1.5-.5 2.6z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên kết nhanh</h4>
+      <ul>
+        <li><a href="trangchu.html">Trang chủ</a></li>
+        <li><a href="chuongtrinh.html">Chương trình đào tạo</a></li>
+        <li><a href="tuyensinh.html">Tuyển sinh</a></li>
+        <li><a href="tintuc.html">Tin tức & Sự kiện</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chương trình</h4>
+      <ul>
+        <li><a href="#">Ban Tự nhiên</a></li>
+        <li><a href="#">Ban Xã hội</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên hệ</h4>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span>Thị trấn Quế, Kim Bảng, Hà Nam</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.16 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <span>(0226) 386 xxxx</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span>thptckimbang@hanam.edu.vn</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>© 2024 Trường THPT C Kim Bảng – Hà Nam. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING ACTION BUTTONS -->
+<div class="fab-group">
+  <button class="fab top" onclick="scrollToTop()" title="Lên đầu trang"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <a href="https://m.me/61575800982426" target="_blank" rel="noopener" class="fab chat" title="Nhắn tin Messenger"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+  <a href="tel:02263861234" class="fab phone" title="Gọi điện"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.92z"/></svg></a>
+</div>
+
+<script>
+  // Sticky header shadow on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 10) header.style.boxShadow = '0 4px 32px rgba(10,36,99,0.35)';
+    else header.style.boxShadow = '0 2px 24px rgba(10,36,99,0.25)';
+  });
+
+  // Mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeMenu = document.getElementById('closeMenu');
+
+  menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  // Scroll to top
+  function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Counter animation
+  function animateCounter(el, target, suffix = '') {
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current.toLocaleString('vi');
+      if (current >= target) clearInterval(timer);
+    }, 25);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(document.getElementById('count1'), 1000);
+        animateCounter(document.getElementById('count2'), 95);
+        animateCounter(document.getElementById('count3'), 100);
+        animateCounter(document.getElementById('count4'), 50);
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) statsObserver.observe(statsEl);
+
+  // Form submit
+  function handleSubmit(btn) {
+    const icon = document.getElementById('submitIcon');
+    const text = document.getElementById('submitText');
+    icon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'; text.textContent = 'Đang gửi...';
+    btn.disabled = true;
+    setTimeout(() => {
+      icon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'; text.textContent = 'Đã gửi thành công!';
+      btn.style.background = 'linear-gradient(135deg, #2e7d32, #43a047)';
+      setTimeout(() => {
+        icon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'; text.textContent = 'Gửi yêu cầu tư vấn';
+        btn.style.background = ''; btn.disabled = false;
+      }, 3000);
+    }, 1500);
+  }
+
+  // Nav active state on scroll
+  const sections = ['hero','about','programs','admissions','news','gallery','contact'];
+  const navLinks = document.querySelectorAll('nav a');
+  const sectionMap = { hero: 0, about: 1, programs: 1, admissions: 2, news: 3, contact: 4 };
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    navLinks.forEach((a, i) => {
+      a.classList.toggle('active', sectionMap[current] === i);
+    });
+  });
+
+  // Timeline image preview on hover
+  document.querySelectorAll('.timeline-item.has-img-preview').forEach(item => {
+    const card = item.querySelector('.timeline-card');
+    const panel = item.querySelector('.timeline-img-panel');
+    if (!card || !panel) return;
+
+    card.addEventListener('mouseenter', () => {
+      panel.classList.add('active');
+      item.classList.add('img-active');
+    });
+    card.addEventListener('mouseleave', () => {
+      panel.classList.remove('active');
+      item.classList.remove('img-active');
+    });
+  });
+</script>
+</body>
+</html>
